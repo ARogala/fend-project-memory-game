@@ -45,6 +45,11 @@ for (cardElement of cardElements) {
 	count = count + 1;
 }
 
+//set the event listener on the entire deck
+const deck = document.getElementsByClassName('deck');
+deck[0].addEventListener('click', runTheGame);
 
 
+function runTheGame(e) {
 
+}
