@@ -194,13 +194,13 @@ function stopWatch() {
         }
         //seconds
         else if(count >= 100 && count < 6000) {
-            secondsElement.innerHTML        = Math.floor(count/100) + ':';
+            secondsElement.innerHTML        = Math.floor(count/100) + ' :';
             deciSecondsElement.innerHTML    = Math.floor((count%100));
         }
         //minutes
         else if(count >= 6000 && count < 360000) {
-            minutesElement.innerHTML        = Math.floor(count/6000) + ':';
-            secondsElement.innerHTML        = Math.floor((count%6000)/100) + ':';
+            minutesElement.innerHTML        = Math.floor(count/6000) + ' :';
+            secondsElement.innerHTML        = Math.floor((count%6000)/100) + ' :';
             deciSecondsElement.innerHTML    = Math.floor((count%100));
         }
     }
