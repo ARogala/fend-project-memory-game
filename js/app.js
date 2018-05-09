@@ -27,3 +27,24 @@ for (const cardElement of cardElements) {
 	cards.push(cardElement.firstElementChild.classList[1]);
     unShuffledCards.push(cardElement.firstElementChild.classList[1]);
 }
+
+//shuffle the cards
+shuffle(cards);
+
+/*
+ * Display the cards on the page
+ *   - loop through the NodeList. for each node of cardElements replace the first child element's
+ *     old card class name with the new shuffled card class name
+ *   - Thus shuffling the icons on the page
+ */
+
+let count = 0;
+for (cardElement of cardElements) {
+	cardElement.firstElementChild.classList.remove(unShuffledCards[count]);
+	cardElement.firstElementChild.classList.add(cards[count]);
+	count = count + 1;
+}
+
+
+
+
