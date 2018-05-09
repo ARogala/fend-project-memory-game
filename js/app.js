@@ -33,6 +33,7 @@ shuffle(cards);
 
 /*
  * Display the cards on the page
+ *
  *   - loop through the NodeList. for each node of cardElements replace the first child element's
  *     old card class name with the new shuffled card class name
  *   - Thus shuffling the icons on the page
@@ -55,6 +56,7 @@ let targetIDs = [];
 
 let moveCounter = 0;
 let moves = document.getElementsByClassName('moves');
+let startTimer = true;
 
 function populateArrays(e) {
     targetIDs.push(e.target.id);
@@ -85,6 +87,7 @@ function incrementMoveCounter() {
 }
 
 function runTheGame(e) {
+
 	//populate arrays
     populateArrays(e);
 
@@ -92,7 +95,10 @@ function runTheGame(e) {
     show1stOpenCard(e);
 
     //start the game timer
-
+    if(startTimer === true) {
+        stopWatch();
+        startTimer = false;
+    }
 
     /*Error handling for user input
     if targetIDs are equal user clicked the same card twice
@@ -164,3 +170,44 @@ function runTheGame(e) {
 
     //check match counter if === 8 game win display win page
 }
+
+
+//add timer
+/*
+* 1 count = 0.01 second (10 MilliSeconds)
+* 100 count = 1 second
+* 6,000 count = 1 minute
+* 360,000 count = 1 hour
+*/
+function stopWatch() {
+    let intervalID = setInterval(startStopWatch, 10);
+    let count       =   0;
+    let minutesElement          =   document.getElementById('minutesElapsed');
+    let secondsElement          =   document.getElementById('secondsElapsed');
+    let deciSecondsElement      =   document.getElementById('deciSecondsElapsed');
+
+    function startStopWatch() {
+        count = count + 1;
+        //deciSeconds
+        if(count <= 99) {
+            deciSecondsElement.innerHTML = count;
+        }
+        //seconds
+        else if(count >= 100 && count < 6000) {
+            secondsElement.innerHTML        = Math.floor(count/100) + ':';
+            deciSecondsElement.innerHTML    = Math.floor((count%100));
+        }
+        //minutes
+        else if(count >= 6000 && count < 360000) {
+            minutesElement.innerHTML        = Math.floor(count/6000) + ':';
+            secondsElement.innerHTML        = Math.floor((count%6000)/100) + ':';
+            deciSecondsElement.innerHTML    = Math.floor((count%100));
+        }
+    }
+}
+
+
+
+
+
+
