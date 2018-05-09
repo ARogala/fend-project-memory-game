@@ -53,6 +53,9 @@ deck[0].addEventListener('click', runTheGame);
 let openCards = [];
 let targetIDs = [];
 
+let moveCounter = 0;
+let moves = document.getElementsByClassName('moves');
+
 function populateArrays(e) {
     targetIDs.push(e.target.id);
     openCards.push(e.target);
@@ -134,7 +137,7 @@ function runTheGame(e) {
         targetIDs.pop();
         targetIDs.pop();
         //increment moveCounter
-
+        incrementMoveCounter();
 
         //call star rating logic
 
