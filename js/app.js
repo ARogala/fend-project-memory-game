@@ -101,7 +101,6 @@ function incrementMoveCounter() {
 
 function incrementMatchCounter() {
     matchCounter = matchCounter + 1;
-    console.log(matchCounter);
 }
 
 function starRating() {
@@ -112,12 +111,35 @@ function starRating() {
     //2star
     else if(moveCounter >= 16 && moveCounter <= 20) {
         stars[2].style.cssText = 'visibility: hidden';
+        stars[5].style.cssText = 'visibility: hidden';
     }
     //1star
     else if(moveCounter >= 21) {
          stars[1].style.cssText = 'visibility: hidden';
          stars[2].style.cssText = 'visibility: hidden';
+         stars[4].style.cssText = 'visibility: hidden';
+         stars[5].style.cssText = 'visibility: hidden';
     }
+}
+//variables for winner
+let scorePanel = document.getElementsByClassName('score-panel');
+let container = document.getElementsByClassName('container');
+let winnerMsg = document.getElementsByClassName('winnerMsg');
+let results = winnerMsg[0].lastElementChild.getElementsByTagName('li');
+console.log(scorePanel[0]);
+console.log(deck[0]);
+console.log(container[0]);
+console.log(results);
+
+function winner() {
+    scorePanel[0].style.cssText = 'display: none';
+    deck[0].style.cssText = 'display: none';
+    container[0].classList.add('winner');
+    winnerMsg[0].style.cssText = 'display: initial';
+    results[0].textContent = 'Total Moves: ' + moveCounter;
+    results[1].textContent = 'Total Time: x seconds';
+    starRating();
+
 }
 
 function runTheGame(e) {
@@ -191,11 +213,6 @@ function runTheGame(e) {
 
             openCards.pop();
             openCards.pop();
-
-            //Do stuff when player wins
-            if(matchCounter === 8) {
-                alert('you won');
-            }
         }
 
         else if(openCard1 !== openCard2) {
@@ -210,9 +227,12 @@ function runTheGame(e) {
     }
 
     //check match counter if === 8 game win display win page
+    if(matchCounter === 8) {
+        winner();
+    }
 }
 
-
+//winner();
 //add timer
 /*
 * 1 count = 0.01 second (10 MilliSeconds)
@@ -220,12 +240,13 @@ function runTheGame(e) {
 * 6,000 count = 1 minute
 * 360,000 count = 1 hour
 */
+let minutesElement          =   document.getElementById('minutesElapsed');
+let secondsElement          =   document.getElementById('secondsElapsed');
+let deciSecondsElement      =   document.getElementById('deciSecondsElapsed');
 function stopWatch() {
     let intervalID = setInterval(startStopWatch, 10);
     let count       =   0;
-    let minutesElement          =   document.getElementById('minutesElapsed');
-    let secondsElement          =   document.getElementById('secondsElapsed');
-    let deciSecondsElement      =   document.getElementById('deciSecondsElapsed');
+
 
     function startStopWatch() {
         count = count + 1;
