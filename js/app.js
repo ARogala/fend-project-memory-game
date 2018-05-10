@@ -125,7 +125,7 @@ function starRating() {
 let scorePanel = document.getElementsByClassName('score-panel');
 let container = document.getElementsByClassName('container');
 let winnerMsg = document.getElementsByClassName('winnerMsg');
-let results = winnerMsg[0].lastElementChild.getElementsByTagName('li');
+let results = winnerMsg[0].childNodes[5].getElementsByTagName('li');
 
 function winner() {
     scorePanel[0].style.cssText = 'display: none';
@@ -136,11 +136,14 @@ function winner() {
     let minutes = minutesElement.innerHTML;
     let seconds = secondsElement.innerHTML;
     let deciSeconds = deciSecondsElement.innerHTML;
-
     results[1].textContent = 'Total Time: ' + minutes + ' ' + seconds + ' ' + deciSeconds;
     starRating();
-
 }
+
+//play again button
+document.getElementById('playAgain').addEventListener('click', function() {
+    window.location.reload(true);
+});
 
 function runTheGame(e) {
 
