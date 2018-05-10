@@ -65,7 +65,10 @@ let moveCounter = 0;
 let moves = document.getElementsByClassName('moves');
 let startTimer = true;
 
-//variables for star rating
+//variable for match counter
+let matchCounter = 0;
+
+//variable for star rating
 let stars = document.getElementsByClassName('fa-star');
 
 function populateArrays(e) {
@@ -96,10 +99,15 @@ function incrementMoveCounter() {
     moves[0].textContent = moveCounter;
 }
 
+function incrementMatchCounter() {
+    matchCounter = matchCounter + 1;
+    console.log(matchCounter);
+}
+
 function starRating() {
     //3star
     if(moveCounter <= 15) {
-        console.log('3 star');
+        //console.log('3 star');
     }
     //2star
     else if(moveCounter >= 16 && moveCounter <= 20) {
@@ -179,9 +187,15 @@ function runTheGame(e) {
             showMatchedCards(e);
 
             //increment match counter
+            incrementMatchCounter();
 
             openCards.pop();
             openCards.pop();
+
+            //Do stuff when player wins
+            if(matchCounter === 8) {
+                alert('you won');
+            }
         }
 
         else if(openCard1 !== openCard2) {
