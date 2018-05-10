@@ -232,7 +232,7 @@ function runTheGame(e) {
     //check match counter if === 8 game win display win page
     if(matchCounter === 8) {
         clearInterval(intervalID);
-        setTimeout(winner, 2000);
+        setTimeout(winner, 1500);
     }
 }
 
