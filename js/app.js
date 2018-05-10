@@ -126,10 +126,6 @@ let scorePanel = document.getElementsByClassName('score-panel');
 let container = document.getElementsByClassName('container');
 let winnerMsg = document.getElementsByClassName('winnerMsg');
 let results = winnerMsg[0].lastElementChild.getElementsByTagName('li');
-console.log(scorePanel[0]);
-console.log(deck[0]);
-console.log(container[0]);
-console.log(results);
 
 function winner() {
     scorePanel[0].style.cssText = 'display: none';
@@ -137,7 +133,11 @@ function winner() {
     container[0].classList.add('winner');
     winnerMsg[0].style.cssText = 'display: initial';
     results[0].textContent = 'Total Moves: ' + moveCounter;
-    results[1].textContent = 'Total Time: x seconds';
+    let minutes = minutesElement.innerHTML;
+    let seconds = secondsElement.innerHTML;
+    let deciSeconds = deciSecondsElement.innerHTML;
+
+    results[1].textContent = 'Total Time: ' + minutes + ' ' + seconds + ' ' + deciSeconds;
     starRating();
 
 }
@@ -228,11 +228,11 @@ function runTheGame(e) {
 
     //check match counter if === 8 game win display win page
     if(matchCounter === 8) {
-        winner();
+        clearInterval(intervalID);
+        setTimeout(winner, 2000);
     }
 }
 
-//winner();
 //add timer
 /*
 * 1 count = 0.01 second (10 MilliSeconds)
@@ -243,10 +243,10 @@ function runTheGame(e) {
 let minutesElement          =   document.getElementById('minutesElapsed');
 let secondsElement          =   document.getElementById('secondsElapsed');
 let deciSecondsElement      =   document.getElementById('deciSecondsElapsed');
+let intervalID;
 function stopWatch() {
-    let intervalID = setInterval(startStopWatch, 10);
-    let count       =   0;
-
+    intervalID = setInterval(startStopWatch, 10);
+    let count      =   0;
 
     function startStopWatch() {
         count = count + 1;
