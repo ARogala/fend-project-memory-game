@@ -50,10 +50,17 @@ for (cardElement of cardElements) {
 const deck = document.getElementsByClassName('deck');
 deck[0].addEventListener('click', runTheGame);
 
+//event listener and function for restart
+const restart = document.getElementsByClassName('fa-repeat');
+restart[0].addEventListener('click', function(){
+    window.location.reload(true);
+});
+
 //create arrays for open cards and targetIDs used for error checking
 let openCards = [];
 let targetIDs = [];
 
+//variables for move counter and timer
 let moveCounter = 0;
 let moves = document.getElementsByClassName('moves');
 let startTimer = true;
