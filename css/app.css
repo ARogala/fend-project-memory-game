@@ -145,6 +145,13 @@ h1 {
     display: inline-block;
 }
 
+.winnerMsg .previousResults {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+}
+
+
 .winnerMsg .stars {
     margin: 0;
     padding: 0;

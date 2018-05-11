@@ -70,6 +70,7 @@ let matchCounter = 0;
 
 //variable for star rating
 let stars = document.getElementsByClassName('fa-star');
+let starAmount = 0;
 
 function populateArrays(e) {
     targetIDs.push(e.target.id);
@@ -117,11 +118,13 @@ function starRating() {
     //3star
     if(moveCounter <= 15) {
         //console.log('3 star');
+        starAmount = 3;
     }
     //2star hide both main and winning page elements
     else if(moveCounter >= 16 && moveCounter <= 20) {
         stars[2].style.cssText = 'visibility: hidden';
         stars[5].style.cssText = 'visibility: hidden';
+        starAmount = 2;
     }
     //1star hide both main and winning page elements
     else if(moveCounter >= 21) {
@@ -129,14 +132,17 @@ function starRating() {
          stars[2].style.cssText = 'visibility: hidden';
          stars[4].style.cssText = 'visibility: hidden';
          stars[5].style.cssText = 'visibility: hidden';
+         starAmount = 1;
     }
 }
 //variables for winner
-let header      = document.getElementsByClassName('header');
-let scorePanel  = document.getElementsByClassName('score-panel');
-let container   = document.getElementsByClassName('container');
-let winnerMsg   = document.getElementsByClassName('winnerMsg');
-let results     = winnerMsg[0].childNodes[5].getElementsByTagName('li');
+let header          = document.getElementsByClassName('header');
+let scorePanel      = document.getElementsByClassName('score-panel');
+let container       = document.getElementsByClassName('container');
+let winnerMsg       = document.getElementsByClassName('winnerMsg');
+let results         = winnerMsg[0].childNodes[5].getElementsByTagName('li');
+let previousResults = winnerMsg[0].childNodes[11].getElementsByTagName('li');
+console.log(winnerMsg[0].childNodes[11].getElementsByTagName('li'));
 /*
 Remove header score panel and deck from display
 add winner class to container thus displaying the winner background
@@ -157,6 +163,39 @@ function winner() {
     let deciSeconds = deciSecondsElement.innerHTML;
     results[1].textContent      = 'Total Time: ' + minutes + ' ' + seconds + ' ' + deciSeconds;
     starRating();
+    //local storage
+    //moves
+    if(sessionStorage.getItem('thisMove') === null) {
+        sessionStorage.setItem('thisMove', moveCounter);
+    }
+    else if(sessionStorage.getItem('thisMove') !== null) {
+        sessionStorage.setItem('previousMove', sessionStorage.getItem('thisMove'));
+        sessionStorage.setItem('thisMove', moveCounter);
+    }
+    //time
+    if(sessionStorage.getItem('thisTime') === null) {
+        sessionStorage.setItem('thisTime', minutes + ' ' + seconds + ' ' + deciSeconds);
+    }
+    else if(sessionStorage.getItem('thisTime') !== null) {
+        sessionStorage.setItem('previousTime', sessionStorage.getItem('thisTime'));
+        sessionStorage.setItem('thisTime', minutes + ' ' + seconds + ' ' + deciSeconds);
+    }
+    //Stars
+    if(sessionStorage.getItem('thisStars') === null) {
+        sessionStorage.setItem('thisStars', starAmount);
+    }
+    else if(sessionStorage.getItem('thisStars') !== null) {
+        sessionStorage.setItem('previousStars', sessionStorage.getItem('thisStars'));
+        sessionStorage.setItem('thisStars', starAmount);
+    }
+    //if any previous value not null update UI
+    if(sessionStorage.getItem('previousStars') !== null) {
+        previousResults[0].textContent      = 'Total Moves: ' + sessionStorage.getItem('previousMove');
+        previousResults[1].textContent      = 'Total Time: '  + sessionStorage.getItem('previousTime');
+        previousResults[2].textContent      = 'Star Rating: ' + sessionStorage.getItem('previousStars');
+    }
+
+
 }
 
 //play again button
