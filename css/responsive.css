@@ -1,0 +1,106 @@
+@charset "UTF-8";
+/**
+ *
+ * @authors a Rogala
+ * @date    2018-05-10 17:41:21
+ * @version 1.0
+ */
+
+@media screen and (max-width: 800px) {
+
+	.deck {
+		width: 90vw;
+		height: auto;
+		padding: 10px;
+	}
+
+	.deck .card {
+		margin: 1.5%;
+	}
+}
+
+@media screen and (max-width: 655px) {
+
+	h1 {
+		margin: 5px;
+	}
+
+	.deck {
+		width: 100vw;
+		height: auto;
+		padding: 10px;
+	}
+
+	.deck .card {
+		height: 110px;
+		width: 110px;
+		margin: 1.5%;
+	}
+}
+
+
+@media screen and (max-width: 530px) {
+
+	h1 {
+		margin: 5px;
+	}
+
+	.deck {
+		width: 100vw;
+		height: auto;
+		padding: 10px;
+	}
+
+	.deck .card {
+		height: 90px;
+		width: 90px;
+		margin: 1.5%;
+	}
+}
+
+@media screen and (max-width: 430px) {
+
+	h1 {
+		margin: 5px;
+	}
+
+	.deck {
+		width: 100vw;
+		height: auto;
+		padding: 10px;
+	}
+
+	.deck .card {
+		height: 70px;
+		width: 70px;
+		margin: 1.5%;
+	}
+}
+
+@media screen and (max-width: 340px) {
+
+	body {
+		font-size: 16px;
+	}
+
+	h1 {
+		margin: 5px;
+	}
+
+	.deck {
+		width: 100vw;
+		height: auto;
+		padding: 10px;
+	}
+
+	.deck .card {
+		height: 55px;
+		width: 55px;
+		margin: 1.5%;
+	}
+}
+
+
+
+
+

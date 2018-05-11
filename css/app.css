@@ -19,6 +19,7 @@ body {
 body {
     background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
     font-family: 'Coda', cursive;
+    font-size: 18px;
 }
 
 .container {
@@ -39,7 +40,7 @@ h1 {
 
 .deck {
     width: 660px;
-    min-height: 680px;
+    height: auto;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
@@ -54,6 +55,7 @@ h1 {
 .deck .card {
     height: 125px;
     width: 125px;
+    margin: 5px;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
@@ -85,10 +87,9 @@ h1 {
 /*
  * Styles for the Score Panel
  */
-
 .score-panel {
     text-align: left;
-    width: 345px;
+    min-width: 260px;
     margin-bottom: 10px;
 }
 
@@ -110,7 +111,6 @@ h1 {
 }
 
 /*Styles for timer */
-
 .timerDisplay {
     display: inline-block;
     padding-left: 20px;
@@ -120,7 +120,6 @@ h1 {
     display: inline-block;
     padding: 2px;
 }
-
 
 /*winner*/
 .winner {
@@ -154,6 +153,7 @@ h1 {
     text-align: center;
 }
 
+/*winner button*/
 .button {
     border-radius: 20px;
     border: none;
@@ -174,3 +174,8 @@ h1 {
 .button:focus {
     outline: 0;
 }
+
+
+
+
+
