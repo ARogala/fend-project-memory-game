@@ -155,95 +155,102 @@ document.getElementById('playAgain').addEventListener('click', function() {
 });
 
 function runTheGame(e) {
-
-	//populate arrays
-    populateArrays(e);
-
-    //display the first card clicked
-    show1stOpenCard(e);
-
-    //start the game timer
-    if(startTimer === true) {
-        stopWatch();
-        startTimer = false;
+    //disable click on deck
+    if(e.target.classList[0] === 'deck') {
+        //do nothing
     }
+    else if(e.target.classList[0] === 'card') {
+        //run game logic
 
-    /*Error handling for user input
-    if targetIDs are equal user clicked the same card twice
-    remove that card from the display and clear both arrays
-    if the second targetID is empty the user clicked the card and
-    then clicked that same open cards icon thus
-    remove that card from the display and clear both arrays*/
-    if(targetIDs.length === 2) {    //wait for two clicks before checking
-        if(targetIDs[0] === targetIDs[1]) {
-            //console.log('user clicked the same card twice');
-            removeOpenCards(e);
-            openCards.pop();
-            openCards.pop();
-            targetIDs.pop();
-            targetIDs.pop();
-        }
-        else if(targetIDs[1] === "") {
-            //console.log('user clicked card then cards icon');
-            removeOpenCards(e);
-            openCards.pop();
-            openCards.pop();
-            targetIDs.pop();
-            targetIDs.pop();
-        }
-    }
+    	//populate arrays
+        populateArrays(e);
 
-    /*
-    if the cards are equal:
-    1. remove the show class and open class from both cards
-    2. add the match class to both cards
-    3. clear the openCards array
+        //display the first card clicked
+        show1stOpenCard(e);
 
-    if the cared are not equal:
-    1. remove the show class and open class from both cards
-    2. clear the openCards array
-    */
-    if(openCards.length === 2) {    //wait for two clicks before checking
-        //set variables to check if card classes are equal
-        let openCard1 = openCards[0].firstElementChild.classList[1];
-        let openCard2 = openCards[1].firstElementChild.classList[1];
-        //clear the targetIDs array
-        targetIDs.pop();
-        targetIDs.pop();
-        //increment moveCounter
-        incrementMoveCounter();
-
-        //call star rating logic
-        starRating();
-
-        if(openCard1 === openCard2) {
-            removeOpenCards(e);
-            showMatchedCards(e);
-
-            //increment match counter
-            incrementMatchCounter();
-
-            openCards.pop();
-            openCards.pop();
+        //start the game timer
+        if(startTimer === true) {
+            stopWatch();
+            startTimer = false;
         }
 
-        else if(openCard1 !== openCard2) {
-            show2ndOpenCard(e);
-            //show the 2nd open card for 1 second
-            setTimeout(function(){
+        /*Error handling for user input
+        if targetIDs are equal user clicked the same card twice
+        remove that card from the display and clear both arrays
+        if the second targetID is empty the user clicked the card and
+        then clicked that same open cards icon thus
+        remove that card from the display and clear both arrays*/
+        if(targetIDs.length === 2) {    //wait for two clicks before checking
+            if(targetIDs[0] === targetIDs[1]) {
+                //console.log('user clicked the same card twice');
                 removeOpenCards(e);
                 openCards.pop();
                 openCards.pop();
-            },1000);
+                targetIDs.pop();
+                targetIDs.pop();
+            }
+            else if(targetIDs[1] === "") {
+                //console.log('user clicked card then cards icon');
+                removeOpenCards(e);
+                openCards.pop();
+                openCards.pop();
+                targetIDs.pop();
+                targetIDs.pop();
+            }
         }
-    }
 
-    //check match counter if === 8 play won the game
-    //stop the timer and display win page
-    //delay winner allowing user to see the last move
-    if(matchCounter === 8) {
-        clearInterval(intervalID);
-        setTimeout(winner, 1500);
+        /*
+        if the cards are equal:
+        1. remove the show class and open class from both cards
+        2. add the match class to both cards
+        3. clear the openCards array
+
+        if the cared are not equal:
+        1. remove the show class and open class from both cards
+        2. clear the openCards array
+        */
+        if(openCards.length === 2) {    //wait for two clicks before checking
+            //set variables to check if card classes are equal
+            let openCard1 = openCards[0].firstElementChild.classList[1];
+            let openCard2 = openCards[1].firstElementChild.classList[1];
+            //clear the targetIDs array
+            targetIDs.pop();
+            targetIDs.pop();
+            //increment moveCounter
+            incrementMoveCounter();
+
+            //call star rating logic
+            starRating();
+
+            if(openCard1 === openCard2) {
+                removeOpenCards(e);
+                showMatchedCards(e);
+
+                //increment match counter
+                incrementMatchCounter();
+
+                openCards.pop();
+                openCards.pop();
+            }
+
+            else if(openCard1 !== openCard2) {
+                show2ndOpenCard(e);
+                //show the 2nd open card for 1 second
+                setTimeout(function(){
+                    removeOpenCards(e);
+                    openCards.pop();
+                    openCards.pop();
+                },1000);
+            }
+        }
+
+        //check match counter if === 8 play won the game
+        //stop the timer and display win page
+        //delay winner allowing user to see the last move
+        if(matchCounter === 8) {
+            clearInterval(intervalID);
+            setTimeout(winner, 1500);
+        }
     }
 }
 
