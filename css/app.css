@@ -82,6 +82,7 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    animation: cardMatch 1s linear;
 }
 
 /*
@@ -175,7 +176,51 @@ h1 {
     outline: 0;
 }
 
+@keyframes cardMatch {
+    0% {
+        transform: rotate3d(.2, 0, 0, 12deg);
+    }
 
+    10% {
+        transform: rotate3d(.4, 0, 0, 24deg);
+    }
+
+    20% {
+        transform: rotate3d(.6, 0, 0, 36deg);
+    }
+
+    30% {
+        transform: rotate3d(.8, 0, 0, 48deg);
+    }
+
+    40% {
+        transform: rotate3d(1, 0, 0, 60deg);
+    }
+
+    50% {
+        transform: rotate3d(.8, 0, 0, 48deg);
+    }
+
+    60% {
+        transform: rotate3d(.6, 0, 0, 36deg);
+    }
+
+    70% {
+        transform: rotate3d(.4, 0, 0, 24deg);
+    }
+
+    80% {
+        transform: rotate3d(.2, 0, 0, 12deg);
+    }
+
+    90% {
+        transform: rotate3d(.2, 0, 0, 12deg);
+    }
+
+    100% {
+        transform: rotate3d(0, 0, 0, 0deg);
+    }
+}
 
 
 
