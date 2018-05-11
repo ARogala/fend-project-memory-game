@@ -84,6 +84,16 @@ function show2ndOpenCard(e) {
     openCards[1].classList.add('show','open');
 }
 
+function cardNotMatch(e) {
+    openCards[0].classList.add('animate');
+    openCards[1].classList.add('animate');
+}
+
+function removeCardNotMatch(e) {
+    openCards[0].classList.remove('animate');
+    openCards[1].classList.remove('animate');
+}
+
 function removeOpenCards(e) {
     openCards[0].classList.remove('show','open');
     openCards[1].classList.remove('show','open');
@@ -201,13 +211,17 @@ function runTheGame(e) {
 
         /*
         if the cards are equal:
-        1. remove the show class and open class from both cards
-        2. add the match class to both cards
-        3. clear the openCards array
+        1. show the 2nd open card
+        2. increment the match counter
+        2. remove the show class and open class from both cards
+        3. add the match class to both cards
+        4. clear the openCards array
 
         if the cared are not equal:
-        1. remove the show class and open class from both cards
-        2. clear the openCards array
+        1. show 2nd open card
+        2. call cardNotMatch animation on a delay
+        3. remove the show class, open class, and animate class from both cards
+        4. clear the openCards array
         */
         if(openCards.length === 2) {    //wait for two clicks before checking
             //set variables to check if card classes are equal
@@ -218,29 +232,40 @@ function runTheGame(e) {
             targetIDs.pop();
             //increment moveCounter
             incrementMoveCounter();
-
             //call star rating logic
             starRating();
 
             if(openCard1 === openCard2) {
-                removeOpenCards(e);
-                showMatchedCards(e);
-
+                //show the 2nd open card
+                show2ndOpenCard(e);
                 //increment match counter
                 incrementMatchCounter();
-
-                openCards.pop();
-                openCards.pop();
+                //delay the removal of open cards and the addition of matched cards
+                //this allows cardOpen animation to play on 2nd open card
+                setTimeout(function() {
+                    removeOpenCards(e);
+                    showMatchedCards(e);
+                    openCards.pop();
+                    openCards.pop();
+                }, 500)
             }
 
             else if(openCard1 !== openCard2) {
+                //show the 2nd open card
                 show2ndOpenCard(e);
-                //show the 2nd open card for 1 second
+                //delay cardNotMatch animation
+                //this allows the cardOpen animation to play on 2nd open card
+                setTimeout(function() {
+                    cardNotMatch(e);
+                }, 500);
+                //delay the removal of classes allowing both animations to play first
+                //also gives user a chance to remember the cards
                 setTimeout(function(){
                     removeOpenCards(e);
+                    removeCardNotMatch(e);
                     openCards.pop();
                     openCards.pop();
-                },1000);
+                },1500);
             }
         }
 
