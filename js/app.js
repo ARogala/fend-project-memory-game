@@ -108,12 +108,12 @@ function starRating() {
     if(moveCounter <= 15) {
         //console.log('3 star');
     }
-    //2star
+    //2star hide both main and winning page elements
     else if(moveCounter >= 16 && moveCounter <= 20) {
         stars[2].style.cssText = 'visibility: hidden';
         stars[5].style.cssText = 'visibility: hidden';
     }
-    //1star
+    //1star hide both main and winning page elements
     else if(moveCounter >= 21) {
          stars[1].style.cssText = 'visibility: hidden';
          stars[2].style.cssText = 'visibility: hidden';
@@ -127,18 +127,25 @@ let scorePanel  = document.getElementsByClassName('score-panel');
 let container   = document.getElementsByClassName('container');
 let winnerMsg   = document.getElementsByClassName('winnerMsg');
 let results     = winnerMsg[0].childNodes[5].getElementsByTagName('li');
-
+/*
+Remove header score panel and deck from display
+add winner class to container thus displaying the winner background
+set winnerMsg class display to initial bringing it into view
+add total moves to results list element
+get the time and add the time to results list element
+call starRating function to add star rating to winner page
+*/
 function winner() {
-    header[0].style.cssText = 'display: none';
+    header[0].style.cssText     = 'display: none';
     scorePanel[0].style.cssText = 'display: none';
-    deck[0].style.cssText = 'display: none';
+    deck[0].style.cssText       = 'display: none';
     container[0].classList.add('winner');
-    winnerMsg[0].style.cssText = 'display: initial';
-    results[0].textContent = 'Total Moves: ' + moveCounter;
+    winnerMsg[0].style.cssText  = 'display: initial';
+    results[0].textContent      = 'Total Moves: ' + moveCounter;
     let minutes = minutesElement.innerHTML;
     let seconds = secondsElement.innerHTML;
     let deciSeconds = deciSecondsElement.innerHTML;
-    results[1].textContent = 'Total Time: ' + minutes + ' ' + seconds + ' ' + deciSeconds;
+    results[1].textContent      = 'Total Time: ' + minutes + ' ' + seconds + ' ' + deciSeconds;
     starRating();
 }
 
@@ -231,7 +238,9 @@ function runTheGame(e) {
         }
     }
 
-    //check match counter if === 8 game win display win page
+    //check match counter if === 8 play won the game
+    //stop the timer and display win page
+    //delay winner allowing user to see the last move
     if(matchCounter === 8) {
         clearInterval(intervalID);
         setTimeout(winner, 1500);
