@@ -122,12 +122,14 @@ function starRating() {
     }
 }
 //variables for winner
-let scorePanel = document.getElementsByClassName('score-panel');
-let container = document.getElementsByClassName('container');
-let winnerMsg = document.getElementsByClassName('winnerMsg');
-let results = winnerMsg[0].childNodes[5].getElementsByTagName('li');
+let header      = document.getElementsByClassName('header');
+let scorePanel  = document.getElementsByClassName('score-panel');
+let container   = document.getElementsByClassName('container');
+let winnerMsg   = document.getElementsByClassName('winnerMsg');
+let results     = winnerMsg[0].childNodes[5].getElementsByTagName('li');
 
 function winner() {
+    header[0].style.cssText = 'display: none';
     scorePanel[0].style.cssText = 'display: none';
     deck[0].style.cssText = 'display: none';
     container[0].classList.add('winner');
