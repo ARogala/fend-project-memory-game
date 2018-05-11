@@ -142,7 +142,7 @@ let container       = document.getElementsByClassName('container');
 let winnerMsg       = document.getElementsByClassName('winnerMsg');
 let results         = winnerMsg[0].childNodes[5].getElementsByTagName('li');
 let previousResults = winnerMsg[0].childNodes[11].getElementsByTagName('li');
-console.log(winnerMsg[0].childNodes[11].getElementsByTagName('li'));
+
 /*
 Remove header score panel and deck from display
 add winner class to container thus displaying the winner background
