@@ -51,7 +51,7 @@ const deck = document.getElementsByClassName('deck');
 deck[0].addEventListener('click', runTheGame);
 
 //event listener and function for restart
-const restart = document.getElementsByClassName('fa-repeat');
+const restart = document.getElementsByClassName('fa-sync');
 restart[0].addEventListener('click', function(){
     window.location.reload(true);
 });
@@ -312,7 +312,7 @@ function runTheGame(e) {
         //stop the timer and display win page
         //delay winner allowing user to see the last move
         if(matchCounter === 8) {
-            clearInterval(intervalID);
+            Controller.stopStopWatch();
             setTimeout(winner, 1500);
         }
     }
