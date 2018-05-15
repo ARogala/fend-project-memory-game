@@ -8,6 +8,9 @@
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+    <script src="js/stopWatchModule.js" defer></script>
+    <script src="js/app.js" defer></script>
 </head>
 <body>
 
@@ -26,11 +29,14 @@
         	<span class="moves">0</span> Moves
 
             <div class="timerDisplay">
+                <div id="hoursElapsed" class="output">
+                    00:
+                </div>
                 <div id="minutesElapsed" class="output">
-                    00 :
+                    00:
                 </div>
                 <div id="secondsElapsed" class="output">
-                    00 :
+                    00.
                 </div>
                 <div id="deciSecondsElapsed" class="output">
                     00
@@ -118,7 +124,7 @@
         </ul>
     </div>
 
-    <script src="js/app.js"></script>
+
 </body>
 </html>
 

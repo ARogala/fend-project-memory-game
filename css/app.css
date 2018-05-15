@@ -120,12 +120,19 @@ h1 {
 /*Styles for timer */
 .timerDisplay {
     display: inline-block;
-    padding: 0 10px 0 10px;
+    padding: 0 10px 0 20px;
+}
+
+/*hide the hours not necessary for this game*/
+#hoursElapsed {
+    display: none;
 }
 
 .output {
     display: inline-block;
     padding: 2px;
+    width: 35px;
+    margin-left: -10px;
 }
 
 /*winner*/
