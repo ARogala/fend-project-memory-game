@@ -137,12 +137,14 @@ function starRating() {
 }
 //variables for winner
 let header          = document.getElementsByClassName('header');
-let scorePanel      = document.getElementsByClassName('score-panel');
-let container       = document.getElementsByClassName('container');
-let winnerMsg       = document.getElementsByClassName('winnerMsg');
-let results         = winnerMsg[0].childNodes[5].getElementsByTagName('li');
-let previousResults = winnerMsg[0].childNodes[11].getElementsByTagName('li');
-
+let scorePanel         = document.getElementsByClassName('score-panel');
+let container          = document.getElementsByClassName('container');
+let winnerMsg          = document.getElementsByClassName('winnerMsg');
+let results            = winnerMsg[0].childNodes[5].getElementsByTagName('li');
+let previousResults    = winnerMsg[0].childNodes[11].getElementsByTagName('li');
+let minutesElement     = document.getElementById('minutesElapsed');
+let secondsElement     = document.getElementById('secondsElapsed');
+let deciSecondsElement = document.getElementById('deciSecondsElapsed');
 /*
 Remove header score panel and deck from display
 add winner class to container thus displaying the winner background
