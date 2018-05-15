@@ -219,7 +219,7 @@ function runTheGame(e) {
 
         //start the game timer
         if(startTimer === true) {
-            stopWatch();
+            Controller.startStopWatch();
             startTimer = false;
         }
 
@@ -318,40 +318,6 @@ function runTheGame(e) {
     }
 }
 
-//add timer
-/*
-* 1 count = 0.01 second (10 MilliSeconds)
-* 100 count = 1 second
-* 6,000 count = 1 minute
-* 360,000 count = 1 hour
-*/
-let minutesElement          =   document.getElementById('minutesElapsed');
-let secondsElement          =   document.getElementById('secondsElapsed');
-let deciSecondsElement      =   document.getElementById('deciSecondsElapsed');
-let intervalID;
-function stopWatch() {
-    intervalID = setInterval(startStopWatch, 10);
-    let count      =   0;
-
-    function startStopWatch() {
-        count = count + 1;
-        //deciSeconds
-        if(count <= 99) {
-            deciSecondsElement.innerHTML = count;
-        }
-        //seconds
-        else if(count >= 100 && count < 6000) {
-            secondsElement.innerHTML        = Math.floor(count/100) + ' :';
-            deciSecondsElement.innerHTML    = Math.floor((count%100));
-        }
-        //minutes
-        else if(count >= 6000 && count < 360000) {
-            minutesElement.innerHTML        = Math.floor(count/6000) + ' :';
-            secondsElement.innerHTML        = Math.floor((count%6000)/100) + ' :';
-            deciSecondsElement.innerHTML    = Math.floor((count%100));
-        }
-    }
-}
 
 
 
