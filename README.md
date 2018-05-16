@@ -42,8 +42,13 @@ Improve game statistics storage. Add player names and a leader board. The curren
 
 ## Dependencies
 Font Awesome https://fontawesome.com/ is used for all the Icons
+
 Google Fonts is used for font family.
+
 Alarm Clock font provided by https://www.dafont.com/alarm-clock.font
 Alarm Clock € by David J Patterson
+
+StopWatchModule.js is used for the timer function in the game
+StopWatchModule.js written by Andrew Rogala.
 
 
