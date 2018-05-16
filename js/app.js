@@ -205,6 +205,7 @@ document.getElementById('playAgain').addEventListener('click', function() {
     window.location.reload(true);
 });
 
+let matchedCards = [];
 function runTheGame(e) {
     //disable click on deck
     if(e.target.classList[0] === 'deck') {
@@ -226,7 +227,8 @@ function runTheGame(e) {
             startTimer = false;
         }
 
-        /*Error handling for user input
+        //START ERROR HANDLING
+        /*
         if targetIDs are equal user clicked the same card twice
         keep the card open and remove the duplicate card from the openCards and targetIDs arrays
         */
@@ -237,6 +239,33 @@ function runTheGame(e) {
                 targetIDs.pop();
             }
         }
+        /*
+        if user clicks on matched cards with no other card open
+        targetIDs[0] will be equal to one of the matched cards
+        remove the matched card from the targetIDs and openCards array
+        and exit runTheGame function
+        */
+        for(let i = 0; i < matchedCards.length; i++) {
+            if(matchedCards[i] === targetIDs[0]) {
+                targetIDs.pop();
+                openCards.pop();
+                return;
+            }
+        }
+        /*
+        if user clicks on a matched card after another card is open
+        targetIDs[1] will be equal to one of the matched cards
+        remove the matched card from the targetIDs and openCards array
+        and exit runTheGame function
+        */
+        for(let i = 0; i < matchedCards.length; i++) {
+            if(matchedCards[i] === targetIDs[1]) {
+                targetIDs.pop();
+                openCards.pop();
+                return;
+            }
+        }
+        //END ERROR HANDLING
 
         /*
         if the cards are equal:
@@ -252,19 +281,24 @@ function runTheGame(e) {
         3. remove the show class, open class, and animate class from both cards
         4. clear the openCards array
         */
+
         if(openCards.length === 2) {    //wait for two clicks before checking
             //set variables to check if card classes are equal
             let openCard1 = openCards[0].firstElementChild.classList[1];
             let openCard2 = openCards[1].firstElementChild.classList[1];
-            //clear the targetIDs array
-            targetIDs.pop();
-            targetIDs.pop();
+
             //increment moveCounter
             incrementMoveCounter();
             //call star rating logic
             starRating();
 
             if(openCard1 === openCard2) {
+                //push the matched cards into their array
+                matchedCards.push(targetIDs[0]);
+                matchedCards.push(targetIDs[1]);
+                //clear the targetIDs array
+                targetIDs.pop();
+                targetIDs.pop();
                 //show the 2nd open card
                 show2ndOpenCard(e);
                 //increment match counter
@@ -280,6 +314,9 @@ function runTheGame(e) {
             }
 
             else if(openCard1 !== openCard2) {
+                //clear the targetIDs array
+                targetIDs.pop();
+                targetIDs.pop();
                 //show the 2nd open card
                 show2ndOpenCard(e);
                 //delay cardNotMatch animation
