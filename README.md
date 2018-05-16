@@ -31,12 +31,14 @@ Less than or equal to fifteen (15) moves results in a three (3) star win
 Between sixteen (16) and twenty (20) moves results in a two (2) star win
 Over twenty (20) moves results in a one (1) star win
 
+There is a cheat button on top which can be activated only once before any moves are made.
+The cheat will flash all cards for two seconds,
+but applies a penalty of two (2) moves.
+
 ## FuturePlans
 Increase the number of stars and adjust the rules of the game allowing the star rating to drop over time as well as when the number of moves increases.
 
 Add different icon sets and let the user choose between a few card themes.
-
-Add a cheat button, that can be activated only once before any moves are made, that will flash all cards for one (1) second before the game starts. The cheat button will cost a pre-determined number of moves.
 
 Improve game statistics storage. Add player names and a leader board. The current version only tracks the previous play and resets every time the game is reopened.
 

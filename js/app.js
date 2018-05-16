@@ -19,7 +19,8 @@ let matchCounter = 0;
 let stars = document.getElementsByClassName('fa-star');
 let starAmount = 0;
 //variables for winner function
-let header          = document.getElementsByClassName('header');
+let header             = document.getElementsByClassName('header');
+let cheatElement       = document.getElementsByClassName('cheat');
 let scorePanel         = document.getElementsByClassName('score-panel');
 let container          = document.getElementsByClassName('container');
 let winnerMsg          = document.getElementsByClassName('winnerMsg');
@@ -28,6 +29,8 @@ let previousResults    = winnerMsg[0].childNodes[11].getElementsByTagName('li');
 let minutesElement     = document.getElementById('minutesElapsed');
 let secondsElement     = document.getElementById('secondsElapsed');
 let deciSecondsElement = document.getElementById('deciSecondsElapsed');
+//variable for cheat function
+let cheatCount = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -86,6 +89,9 @@ restart[0].addEventListener('click', function(){
 document.getElementById('playAgain').addEventListener('click', function() {
     window.location.reload(true);
 });
+
+//cheat button
+document.getElementById('cheatBtn').addEventListener('click', cheat);
 
 function populateArrays(e) {
     targetIDs.push(e.target.id);
@@ -156,12 +162,13 @@ get the time and add the time to results list element
 call starRating function to add star rating to winner page
 */
 function winner() {
-    header[0].style.cssText     = 'display: none';
-    scorePanel[0].style.cssText = 'display: none';
-    deck[0].style.cssText       = 'display: none';
+    header[0].style.cssText       = 'display: none';
+    cheatElement[0].style.cssText = 'display: none';
+    scorePanel[0].style.cssText   = 'display: none';
+    deck[0].style.cssText         = 'display: none';
     container[0].classList.add('winner');
-    winnerMsg[0].style.cssText  = 'display: initial';
-    results[0].textContent      = 'Total Moves: ' + moveCounter;
+    winnerMsg[0].style.cssText    = 'display: initial';
+    results[0].textContent        = 'Total Moves: ' + moveCounter;
     let minutes = minutesElement.innerHTML;
     let seconds = secondsElement.innerHTML;
     let deciSeconds = deciSecondsElement.innerHTML;
@@ -200,6 +207,35 @@ function winner() {
     }
 }
 
+function cheat(e) {
+    //only cheat before moves are made and only allow one cheat
+    //cheating will cost 2 moves
+    if(moveCounter === 0 && startTimer === true && cheatCount === 0) {
+        //show the cards
+        let count = 0;
+        for (cardElement of cardElements) {
+            cardElement.classList.add('show','open');
+            count = count + 1;
+        }
+        //flip cards back over after 2 second
+        setTimeout(function() {
+            let count = 0;
+            for (cardElement of cardElements) {
+                cardElement.classList.remove('show','open');
+                count = count + 1;
+            }
+        },2000);
+        /*increment cheatCount, add and display
+        cheat move penalty, start stop watch and set startTimer to false
+        preventing a second call to startStopWatch()*/
+        cheatCount = cheatCount + 1;
+        moveCounter = 2;
+        moves[0].textContent = moveCounter;
+        StopWatchController.startStopWatch();
+        startTimer = false;
+    }
+}
+
 function runTheGame(e) {
     //disable click on deck
     if(e.target.classList[0] === 'deck') {
@@ -214,7 +250,6 @@ function runTheGame(e) {
 
         //display the first card clicked
         showOpenCard(e,0);
-
         //start the game timer
         if(startTimer === true) {
             StopWatchController.startStopWatch();
