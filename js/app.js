@@ -77,12 +77,8 @@ function populateArrays(e) {
     openCards.push(e.target);
 }
 
-function show1stOpenCard(e) {
-    openCards[0].classList.add('show','open');
-}
-
-function show2ndOpenCard(e) {
-    openCards[1].classList.add('show','open');
+function showOpenCard(e, array_position) {
+    openCards[array_position].classList.add('show','open');
 }
 
 function cardNotMatch(e) {
@@ -219,7 +215,7 @@ function runTheGame(e) {
         populateArrays(e);
 
         //display the first card clicked
-        show1stOpenCard(e);
+        showOpenCard(e,0);
 
         //start the game timer
         if(startTimer === true) {
@@ -300,7 +296,7 @@ function runTheGame(e) {
                 targetIDs.pop();
                 targetIDs.pop();
                 //show the 2nd open card
-                show2ndOpenCard(e);
+                showOpenCard(e,1);
                 //increment match counter
                 incrementMatchCounter();
                 //delay the removal of open cards and the addition of matched cards
@@ -318,7 +314,7 @@ function runTheGame(e) {
                 targetIDs.pop();
                 targetIDs.pop();
                 //show the 2nd open card
-                show2ndOpenCard(e);
+                showOpenCard(e,1);
                 //delay cardNotMatch animation
                 //this allows the cardOpen animation to play on 2nd open card
                 setTimeout(function() {
