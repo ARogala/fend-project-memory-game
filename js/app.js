@@ -217,7 +217,7 @@ function runTheGame(e) {
 
         //start the game timer
         if(startTimer === true) {
-            Controller.startStopWatch();
+            StopWatchController.startStopWatch();
             startTimer = false;
         }
 
@@ -334,7 +334,7 @@ function runTheGame(e) {
         //stop the timer and display win page
         //delay winner allowing user to see the last move
         if(matchCounter === 8) {
-            Controller.stopStopWatch();
+            StopWatchController.stopStopWatch();
             setTimeout(winner, 1500);
         }
     }
