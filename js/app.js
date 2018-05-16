@@ -210,7 +210,8 @@ function runTheGame(e) {
     if(e.target.classList[0] === 'deck') {
         //do nothing
     }
-    else if(e.target.classList[0] === 'card') {
+    //if user clicks a card and there arent already two open cards run the game
+    else if(e.target.classList[0] === 'card' && openCards.length < 2) {
         //run game logic
 
     	//populate arrays
@@ -227,25 +228,12 @@ function runTheGame(e) {
 
         /*Error handling for user input
         if targetIDs are equal user clicked the same card twice
-        remove that card from the display and clear both arrays
-        if the second targetID is empty the user clicked the card and
-        then clicked that same open cards icon thus
-        remove that card from the display and clear both arrays*/
+        keep the card open and remove the duplicate card from the openCards and targetIDs arrays
+        */
         if(targetIDs.length === 2) {    //wait for two clicks before checking
             if(targetIDs[0] === targetIDs[1]) {
                 //console.log('user clicked the same card twice');
-                removeOpenCards(e);
                 openCards.pop();
-                openCards.pop();
-                targetIDs.pop();
-                targetIDs.pop();
-            }
-            else if(targetIDs[1] === "") {
-                //console.log('user clicked card then cards icon');
-                removeOpenCards(e);
-                openCards.pop();
-                openCards.pop();
-                targetIDs.pop();
                 targetIDs.pop();
             }
         }
@@ -307,6 +295,7 @@ function runTheGame(e) {
                     openCards.pop();
                     openCards.pop();
                 },1500);
+
             }
         }
 
