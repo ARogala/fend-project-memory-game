@@ -40,8 +40,10 @@ Add a cheat button, that can be activated only once before any moves are made, t
 
 Improve game statistics storage. Add player names and a leader board. The current version only tracks the previous play and resets every time the game is reopened.
 
-##Dependencies
+## Dependencies
 Font Awesome https://fontawesome.com/ is used for all the Icons
 Google Fonts is used for font family.
+Alarm Clock font provided by https://www.dafont.com/alarm-clock.font
+Alarm Clock € by David J Patterson
 
 
