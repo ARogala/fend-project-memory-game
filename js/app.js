@@ -1,3 +1,34 @@
+//variables
+const deck = document.getElementsByClassName('deck');
+const cardElements = document.querySelectorAll('.card');
+const cards = [];
+const unShuffledCards = [];
+const restart = document.getElementsByClassName('fa-sync');
+//create arrays for open cards and targetIDs
+let openCards = [];
+let targetIDs = [];
+//matchedCards array will contain all the matched cards used for error handling
+let matchedCards = [];
+//variables for move counter and timer
+let moveCounter = 0;
+let moves = document.getElementsByClassName('moves');
+let startTimer = true;
+//variable for match counter
+let matchCounter = 0;
+//variable for star rating
+let stars = document.getElementsByClassName('fa-star');
+let starAmount = 0;
+//variables for winner function
+let header          = document.getElementsByClassName('header');
+let scorePanel         = document.getElementsByClassName('score-panel');
+let container          = document.getElementsByClassName('container');
+let winnerMsg          = document.getElementsByClassName('winnerMsg');
+let results            = winnerMsg[0].childNodes[5].getElementsByTagName('li');
+let previousResults    = winnerMsg[0].childNodes[11].getElementsByTagName('li');
+let minutesElement     = document.getElementById('minutesElapsed');
+let secondsElement     = document.getElementById('secondsElapsed');
+let deciSecondsElement = document.getElementById('deciSecondsElapsed');
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -20,9 +51,6 @@ function shuffle(array) {
  * second class name into an array
  * maintain and unshuffled deck used to remove old classes
  */
-const cardElements = document.querySelectorAll('.card');
-const cards = [];
-const unShuffledCards = [];
 for (const cardElement of cardElements) {
 	cards.push(cardElement.firstElementChild.classList[1]);
     unShuffledCards.push(cardElement.firstElementChild.classList[1]);
@@ -47,30 +75,17 @@ for (cardElement of cardElements) {
 }
 
 //set the event listener on the entire deck
-const deck = document.getElementsByClassName('deck');
 deck[0].addEventListener('click', runTheGame);
 
 //event listener and function for restart
-const restart = document.getElementsByClassName('fa-sync');
 restart[0].addEventListener('click', function(){
     window.location.reload(true);
 });
 
-//create arrays for open cards and targetIDs used for error checking
-let openCards = [];
-let targetIDs = [];
-
-//variables for move counter and timer
-let moveCounter = 0;
-let moves = document.getElementsByClassName('moves');
-let startTimer = true;
-
-//variable for match counter
-let matchCounter = 0;
-
-//variable for star rating
-let stars = document.getElementsByClassName('fa-star');
-let starAmount = 0;
+//play again button
+document.getElementById('playAgain').addEventListener('click', function() {
+    window.location.reload(true);
+});
 
 function populateArrays(e) {
     targetIDs.push(e.target.id);
@@ -131,16 +146,7 @@ function starRating() {
          starAmount = 1;
     }
 }
-//variables for winner
-let header          = document.getElementsByClassName('header');
-let scorePanel         = document.getElementsByClassName('score-panel');
-let container          = document.getElementsByClassName('container');
-let winnerMsg          = document.getElementsByClassName('winnerMsg');
-let results            = winnerMsg[0].childNodes[5].getElementsByTagName('li');
-let previousResults    = winnerMsg[0].childNodes[11].getElementsByTagName('li');
-let minutesElement     = document.getElementById('minutesElapsed');
-let secondsElement     = document.getElementById('secondsElapsed');
-let deciSecondsElement = document.getElementById('deciSecondsElapsed');
+
 /*
 Remove header score panel and deck from display
 add winner class to container thus displaying the winner background
@@ -192,16 +198,8 @@ function winner() {
         previousResults[1].textContent      = 'Total Time: '  + sessionStorage.getItem('previousTime');
         previousResults[2].textContent      = 'Star Rating: ' + sessionStorage.getItem('previousStars');
     }
-
-
 }
 
-//play again button
-document.getElementById('playAgain').addEventListener('click', function() {
-    window.location.reload(true);
-});
-
-let matchedCards = [];
 function runTheGame(e) {
     //disable click on deck
     if(e.target.classList[0] === 'deck') {
