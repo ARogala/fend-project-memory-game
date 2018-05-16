@@ -6,6 +6,7 @@
 * [Contributing](#contributing)
 * [GamePlay Rules](#GamePlayRules)
 * [Future Plans](#FuturePlans)
+* [Dependencies](#Dependencies)
 
 ## Instructions
 
@@ -38,5 +39,9 @@ Add different icon sets and let the user choose between a few card themes.
 Add a cheat button, that can be activated only once before any moves are made, that will flash all cards for one (1) second before the game starts. The cheat button will cost a pre-determined number of moves.
 
 Improve game statistics storage. Add player names and a leader board. The current version only tracks the previous play and resets every time the game is reopened.
+
+##Dependencies
+Font Awesome https://fontawesome.com/ is used for all the Icons
+Google Fonts is used for font family.
 
 
