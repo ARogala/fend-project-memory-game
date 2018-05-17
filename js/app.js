@@ -144,6 +144,15 @@ document.getElementById('playAgain').addEventListener('click', function() {
 //cheat button
 document.getElementById('cheatBtn').addEventListener('click', cheat);
 
+//rules
+document.getElementById('rulesBtn').addEventListener('click', rules);
+
+//settings
+document.getElementById('settingsBtn').addEventListener('click', settings);
+
+//about
+document.getElementById('aboutBtn').addEventListener('click', about);
+
 function populateArrays(e) {
     targetIDs.push(e.target.id);
     openCards.push(e.target);
@@ -258,7 +267,7 @@ function winner() {
     }
 }
 
-function cheat(e) {
+function cheat() {
     //only cheat before moves are made and only allow one cheat
     //cheating will cost 2 moves
     if(moveCounter === 0 && startTimer === true && cheatCount === 0) {
@@ -285,6 +294,18 @@ function cheat(e) {
         StopWatchController.startStopWatch();
         startTimer = false;
     }
+}
+
+function rules() {
+
+}
+
+function settings() {
+
+}
+
+function about() {
+
 }
 
 function runTheGame(e) {
