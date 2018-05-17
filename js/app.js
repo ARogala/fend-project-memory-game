@@ -29,6 +29,12 @@ let previousResults    = winnerMsg[0].childNodes[11].getElementsByTagName('li');
 let minutesElement     = document.getElementById('minutesElapsed');
 let secondsElement     = document.getElementById('secondsElapsed');
 let deciSecondsElement = document.getElementById('deciSecondsElapsed');
+
+//var for nav functions
+let nav                = document.getElementsByClassName('nav');
+let rulesElement       = document.getElementsByClassName('rules');
+let settingsElement    = document.getElementsByClassName('settings');
+let aboutElement       = document.getElementsByClassName('about');
 //variable for cheat function
 let cheatCount = 0;
 //variables for random shuffled deck
@@ -144,14 +150,23 @@ document.getElementById('playAgain').addEventListener('click', function() {
 //cheat button
 document.getElementById('cheatBtn').addEventListener('click', cheat);
 
-//rules
+//nav rules
 document.getElementById('rulesBtn').addEventListener('click', rules);
 
-//settings
+//nav settings
 document.getElementById('settingsBtn').addEventListener('click', settings);
 
-//about
+//nav about
 document.getElementById('aboutBtn').addEventListener('click', about);
+
+//return to game from setting and about pages
+document.getElementById('return1').addEventListener('click', function() {
+    window.location.reload(true);
+});
+
+document.getElementById('return2').addEventListener('click', function() {
+    window.location.reload(true);
+});
 
 function populateArrays(e) {
     targetIDs.push(e.target.id);
@@ -226,6 +241,7 @@ function winner() {
     cheatElement[0].style.cssText = 'display: none';
     scorePanel[0].style.cssText   = 'display: none';
     deck[0].style.cssText         = 'display: none';
+    nav[0].style.cssText          = 'display: none';
     container[0].classList.add('winner');
     winnerMsg[0].style.cssText    = 'display: initial';
     results[0].textContent        = 'Total Moves: ' + moveCounter;
@@ -295,18 +311,41 @@ function cheat() {
         startTimer = false;
     }
 }
-
+// Nav menu functions
+//note the winner class is reused here and just adds a background gradient
+//consider renaming some classes
 function rules() {
+    header[0].style.cssText          = 'display: none';
+    cheatElement[0].style.cssText    = 'display: none';
+    scorePanel[0].style.cssText      = 'display: none';
+    deck[0].style.cssText            = 'display: none';
+    nav[0].style.cssText             = 'display: none';
+    container[0].classList.add('winner');
+    rulesElement[0].style.cssText    = 'display: initial';
 
 }
 
 function settings() {
-
+    header[0].style.cssText       = 'display: none';
+    cheatElement[0].style.cssText = 'display: none';
+    scorePanel[0].style.cssText   = 'display: none';
+    deck[0].style.cssText         = 'display: none';
+    nav[0].style.cssText          = 'display: none';
+    container[0].classList.add('winner');
+    settingsElement[0].style.cssText    = 'display: initial';
 }
 
 function about() {
-
+    header[0].style.cssText       = 'display: none';
+    cheatElement[0].style.cssText = 'display: none';
+    scorePanel[0].style.cssText   = 'display: none';
+    deck[0].style.cssText         = 'display: none';
+    nav[0].style.cssText          = 'display: none';
+    container[0].classList.add('winner');
+    aboutElement[0].style.cssText    = 'display: initial';
 }
+
+// END NAV menu functions
 
 function runTheGame(e) {
     //disable click on deck

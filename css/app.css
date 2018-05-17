@@ -266,7 +266,7 @@ h1 {
 /*winner*/
 .winner {
     background: linear-gradient(160deg, rgba(2,204,186,.4) 0%, rgba(170,126,205,.4) 100%);
-    height: 100vh;
+    height: 100%;
 }
 
 .winnerMsg {
@@ -325,6 +325,30 @@ h1 {
 .button:focus {
     outline: 0;
 }
+
+/*styles for the rules*/
+.rules {
+    display: none;
+    text-align: center;
+    position: absolute;
+    top: 0;
+}
+
+.rules ul {
+    text-align: left;
+}
+
+/*styles for the setting page*/
+
+
+/*styles for about page*/
+.about {
+    display: none;
+    text-align: center;
+    position: absolute;
+    top: 0;
+}
+
 
 /*animations*/
 @keyframes cardNotMatch {
