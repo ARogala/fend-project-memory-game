@@ -30,6 +30,10 @@ body {
     font-size: 18px;
 }
 
+i.fas.fa-star {
+    color: gold;
+}
+
 .container {
     display: flex;
     justify-content: center;
