@@ -38,7 +38,7 @@ let aboutElement       = document.getElementsByClassName('about');
 //variable for cheat function
 let cheatCount = 0;
 //variables for random shuffled deck
-let playRandomDeck = true;
+let playRandomDeck = false;
 const randomDeck = ['fa-crow', 'fa-dove', 'fa-feather', 'fa-frog', 'fa-kiwi-bird', 'fa-broadcast-tower',
 'fa-church', 'fa-hospital', 'fa-school', 'fa-university', 'fa-compass', 'fa-dollar-sign', 'fa-gift',
 'fa-heart', 'fa-leaf', 'fa-parachute-box', 'fa-piggy-bank', 'fa-seedling', 'fa-poo', 'fa-smile', 'fa-frown',
@@ -69,68 +69,74 @@ function shuffle(array) {
 }
 
 
-if(playRandomDeck === true) {
 
-    //shuffle random deck
-    shuffle(randomDeck);
+processSettingsInit(playRandomDeck);
 
-    //push 8 random cards from randomDeck onto randomCards
-    for(let i = 0; i<8; i++) {
-        randomCards.push(randomDeck[i]);
+function shuffleTheDeck(playRandomDeck) {
+
+    if(playRandomDeck === true) {
+        //shuffle random deck
+        shuffle(randomDeck);
+
+        //push 8 random cards from randomDeck onto randomCards
+        for(let i = 0; i < 8; i++) {
+            randomCards.push(randomDeck[i]);
+        }
+
+        //double the card names by adding all 8 randomCards to a temp array
+        //then add all 8 cards from the temp arry onto to 8 randomCards
+        for(let i = 0; i < 8; i++) {
+            randomCardTemp.push(randomCards[i]);
+            randomCards.push(randomCardTemp[i]);
+        }
+        //shuffle the randomCards
+        shuffle(randomCards);
+
+        //get unshuffled cards from html
+        for (const cardElement of cardElements) {
+             unShuffledCards.push(cardElement.firstElementChild.classList[1]);
+        }
+
+        //remove unshuffled default cards and add random cards to page
+        let count = 0;
+        for (const cardElement of cardElements) {
+            cardElement.firstElementChild.classList.remove(unShuffledCards[count]);
+            cardElement.firstElementChild.classList.add(randomCards[count]);
+            count = count + 1;
+        }
     }
 
-    //double the card names by adding all 8 randomCards to a temp array
-    //then add all 8 cards from the temp arry onto to 8 randomCards
-    for(let i = 0; i < 8; i++) {
-        randomCardTemp.push(randomCards[i]);
-        randomCards.push(randomCardTemp[i]);
-    }
-    //shuffle the randomCards
-    shuffle(randomCards);
+    //default cards
+    else if(playRandomDeck === false) {
+        /*
+         * Create a list that holds all of your cards
+         * Select all 16 card list item elements (querySelectorAll returns a NodeList object)
+         * loop through the NodeList. for each node of cardElements push the first child element's
+         * second class name into an array
+         * maintain and unshuffled deck used to remove old classes
+         */
+        for (const cardElement of cardElements) {
+            cards.push(cardElement.firstElementChild.classList[1]);
+            unShuffledCards.push(cardElement.firstElementChild.classList[1]);
+        }
 
-    //get unshuffled cards from html
-    for (const cardElement of cardElements) {
-         unShuffledCards.push(cardElement.firstElementChild.classList[1]);
-    }
+        //shuffle the cards
+        shuffle(cards);
 
-    //remove unshuffled default cards and add random cards to page
-    let count = 0;
-    for (const cardElement of cardElements) {
-        cardElement.firstElementChild.classList.remove(unShuffledCards[count]);
-        cardElement.firstElementChild.classList.add(randomCards[count]);
-        count = count + 1;
-    }
-}
-//default cards
-else if(playRandomDeck === false) {
-    /*
-     * Create a list that holds all of your cards
-     * Select all 16 card list item elements (querySelectorAll returns a NodeList object)
-     * loop through the NodeList. for each node of cardElements push the first child element's
-     * second class name into an array
-     * maintain and unshuffled deck used to remove old classes
-     */
-    for (const cardElement of cardElements) {
-        cards.push(cardElement.firstElementChild.classList[1]);
-        unShuffledCards.push(cardElement.firstElementChild.classList[1]);
-    }
+        /*
+         * Display the cards on the page
+         *
+         *   - loop through the NodeList. for each node of cardElements replace the first child element's
+         *     old card class name with the new shuffled card class name
+         *   - Thus shuffling the icons on the page
+         */
 
-    //shuffle the cards
-    shuffle(cards);
-
-    /*
-     * Display the cards on the page
-     *
-     *   - loop through the NodeList. for each node of cardElements replace the first child element's
-     *     old card class name with the new shuffled card class name
-     *   - Thus shuffling the icons on the page
-     */
-
-    let count = 0;
-    for (const cardElement of cardElements) {
-        cardElement.firstElementChild.classList.remove(unShuffledCards[count]);
-        cardElement.firstElementChild.classList.add(cards[count]);
-        count = count + 1;
+        let count = 0;
+        for (const cardElement of cardElements) {
+            cardElement.firstElementChild.classList.remove(unShuffledCards[count]);
+            cardElement.firstElementChild.classList.add(cards[count]);
+            count = count + 1;
+        }
     }
 }
 
@@ -165,6 +171,13 @@ document.getElementById('return1').addEventListener('click', function() {
 });
 
 document.getElementById('return2').addEventListener('click', function() {
+    window.location.reload(true);
+});
+
+//setting page event listeners
+document.getElementById('getSettings').addEventListener('submit', processSettings);
+
+document.getElementById('getSettings').addEventListener('reset', function() {
     window.location.reload(true);
 });
 
@@ -344,8 +357,40 @@ function about() {
     container[0].classList.add('winner');
     aboutElement[0].style.cssText    = 'display: initial';
 }
-
 // END NAV menu functions
+
+//initialize the settings for the game
+function processSettingsInit(playRandomDeck) {
+    if(sessionStorage.getItem('CardTheme') === null) {
+        shuffleTheDeck(playRandomDeck);
+    }
+    else {
+        playRandomDeck = sessionStorage.getItem('CardTheme');
+        playRandomDeck = JSON.parse(playRandomDeck);
+        shuffleTheDeck(playRandomDeck);
+    }
+
+}
+
+//submit setting function
+function processSettings(e) {
+    e.preventDefault();
+    let defaultCardTheme, randomCardTheme, defaultColor, secondColor;
+    defaultCardTheme = document.getElementById('getSettings').elements[0].checked;
+    randomCardTheme  = document.getElementById('getSettings').elements[1].checked;
+    defaultColor     = document.getElementById('getSettings').elements[2].checked;
+    secondColor      = document.getElementById('getSettings').elements[3].checked;
+    if(defaultCardTheme === false) {
+        sessionStorage.setItem('CardTheme', randomCardTheme);
+        playRandomDeck = sessionStorage.getItem('CardTheme');
+        playRandomDeck = JSON.parse(playRandomDeck);
+    }
+    else if(defaultCardTheme === true) {
+        sessionStorage.setItem('CardTheme', randomCardTheme);
+        playRandomDeck = sessionStorage.getItem('CardTheme');
+        playRandomDeck = JSON.parse(playRandomDeck);
+    }
+}
 
 function runTheGame(e) {
     //disable click on deck

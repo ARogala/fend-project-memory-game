@@ -112,19 +112,38 @@
         </section>
 
         <section class="settings">
+            <form id="getSettings">
 
+                <label for="defaultCardTheme">Default Card Theme:</label>
+                <input type="radio" id="defaultCardTheme" class="input" name="CardTheme" value="defaultCard">
+                <br>
+
+                <label for="randomCardTheme">Random Card Theme:</label>
+                <input type="radio" id="randomCardTheme" class="input" name="CardTheme" value="randomCard">
+                <br>
+
+                <label for="defaultColorTheme">Default Color Theme:</label>
+                <input type="radio" id="defaultColorTheme" class="input" name="ColorTheme" value="defaultColor">
+                <br>
+
+                <label for="secondColorTheme">Second Color Theme:</label>
+                <input type="radio" id="secondColorTheme" class="input" name="ColorTheme" value="secondColor">
+
+                <div class="buttonContainer">
+                    <button type="submit" value="Submit" class="button">Change Settings</button>
+                    <button type="reset" value="Reset" class="button">Return to Game</button>
+                </div>
+            </form>
         </section>
 
         <section class="about">
             <h2>About Memory Match</h2>
-            <p>Memory match was initially programmed for Udacity's front end nando degree. Since then I have
+            <p>Memory match was initially programmed for Udacity's front end nano degree. Since then I have
             added lots of feautes. Enjoy!</p>
             <div class="buttonContainer">
                 <button id="return2" class="button">Return to game</button>
             </div>
         </section>
-
-
 
         <ul class="deck">
             <li id="card1" class="card">

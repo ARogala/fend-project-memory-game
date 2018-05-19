@@ -339,7 +339,10 @@ h1 {
 }
 
 /*styles for the setting page*/
-
+.settings {
+    display: none;
+    text-align: center;
+}
 
 /*styles for about page*/
 .about {
