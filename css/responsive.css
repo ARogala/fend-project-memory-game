@@ -26,6 +26,10 @@
 		margin: 5px;
 	}
 
+	.nav__button {
+		top: .2em;
+	}
+
 	.deck {
 		width: 100vw;
 		height: auto;
