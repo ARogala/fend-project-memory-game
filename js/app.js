@@ -52,7 +52,8 @@ const randomDeck = ['fa-crow', 'fa-dove', 'fa-feather', 'fa-frog', 'fa-kiwi-bird
 'fa-futbol', 'fa-football-ball', 'fa-user-astronaut', 'fa-user-ninja', 'fa-bus'];
 const randomCards = [];
 const randomCardTemp = [];
-
+//variable for secondColor
+let buttonElements = document.querySelectorAll('.button');
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -67,8 +68,6 @@ function shuffle(array) {
 
     return array;
 }
-
-
 
 processSettingsInit(playRandomDeck);
 
@@ -361,18 +360,23 @@ function about() {
 
 //initialize the settings for the game
 function processSettingsInit(playRandomDeck) {
+    //shuffle the deck even when no settings were set
     if(sessionStorage.getItem('CardTheme') === null) {
         shuffleTheDeck(playRandomDeck);
     }
+    //once settings have been set shuffle the deck with the right logical variable
     else {
         playRandomDeck = sessionStorage.getItem('CardTheme');
         playRandomDeck = JSON.parse(playRandomDeck);
         shuffleTheDeck(playRandomDeck);
     }
-
+    //only change color when second color theme has been picked
+    if(JSON.parse(sessionStorage.getItem('ColorTheme')) === true) {
+        changeColor();
+    }
 }
 
-//submit setting function
+//process settings when change settings button is clicked
 function processSettings(e) {
     e.preventDefault();
     let defaultCardTheme, randomCardTheme, defaultColor, secondColor;
@@ -380,15 +384,32 @@ function processSettings(e) {
     randomCardTheme  = document.getElementById('getSettings').elements[1].checked;
     defaultColor     = document.getElementById('getSettings').elements[2].checked;
     secondColor      = document.getElementById('getSettings').elements[3].checked;
+    //card theme logical storage
     if(defaultCardTheme === false) {
         sessionStorage.setItem('CardTheme', randomCardTheme);
-        playRandomDeck = sessionStorage.getItem('CardTheme');
-        playRandomDeck = JSON.parse(playRandomDeck);
     }
     else if(defaultCardTheme === true) {
         sessionStorage.setItem('CardTheme', randomCardTheme);
-        playRandomDeck = sessionStorage.getItem('CardTheme');
-        playRandomDeck = JSON.parse(playRandomDeck);
+    }
+    //color theme logical storage
+    if(defaultColor === false) {
+        sessionStorage.setItem('ColorTheme', secondColor);
+    }
+    else if(defaultColor === true) {
+        sessionStorage.setItem('ColorTheme', secondColor);
+    }
+}
+
+function changeColor() {
+    nav[0].style.cssText                  = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
+    nav[0].lastElementChild.style.cssText = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
+    container[0].style.cssText            = 'background: linear-gradient(160deg, rgba(255,131,0,.2) 0%, rgba(255,255,0,.2) 100%)';
+    deck[0].style.cssText                 = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
+    //change all the buttons colors
+    let count = 0;
+    for(const buttonElement of buttonElements) {
+        buttonElements[count].style.cssText = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
+        count = count + 1;
     }
 }
 
