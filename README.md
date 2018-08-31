@@ -9,7 +9,7 @@
 
 ## Instructions
 
-Check out the game live at: https://andrewrogalamemorygame.surge.sh
+Check out the game: https://andrewrogalamemorygame.surge.sh
 
 ## GamePlayRules
 There are eight different pairs of cards on the grid, thus making a total of sixteen cards.
