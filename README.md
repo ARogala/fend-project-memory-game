@@ -3,24 +3,13 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [Contributing](#contributing)
 * [GamePlay Rules](#GamePlayRules)
 * [Future Plans](#FuturePlans)
 * [Dependencies](#Dependencies)
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Check out the game live at: https://andrewrogalamemorygame.surge.sh
 
 ## GamePlayRules
 There are eight different pairs of cards on the grid, thus making a total of sixteen cards.
