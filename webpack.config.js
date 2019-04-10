@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 module.exports = {
 	mode: 'development',
@@ -6,10 +7,13 @@ module.exports = {
 		main: './src/app.js'
 	},
 	output: {
-		filename: 'main.js',
+		filename: '[name]-[contentHash]-bundle.js',
 		path: path.resolve(__dirname, 'dist')
 	},
-	plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+	plugins: [
+		new HtmlWebpackPlugin({ template: './src/index.html' }),
+		new CleanWebpackPlugin()
+	],
 	module: {
 		rules: [
 			{
@@ -25,7 +29,7 @@ module.exports = {
 					{
 						loader: 'file-loader',
 						options: {
-							name: '[name].[ext]',
+							name: '[name]-[hash].[ext]',
 							outputPath: 'assets'
 						}
 					}
