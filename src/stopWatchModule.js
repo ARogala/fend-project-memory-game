@@ -278,7 +278,7 @@ const StopWatchCalc = (function() {
 })();
 
 //the interface that controls stop watch, lap time, and UI
-const StopWatchController = (function(UICtrl, StopWatchCtrl) {
+export const StopWatchController = (function(UICtrl, StopWatchCtrl) {
 	let intervalID;
 	let timeArray;
 	let lapTimeArray;

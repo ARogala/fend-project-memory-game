@@ -1,3 +1,4 @@
+import {StopWatchController} from './stopWatchModule';
 //variables
 const deck = document.getElementsByClassName('deck');
 const cardElements = document.querySelectorAll('.card');
@@ -301,14 +302,14 @@ function cheat() {
     if(moveCounter === 0 && startTimer === true && cheatCount === 0) {
         //show the cards
         let count = 0;
-        for (cardElement of cardElements) {
+        for (const cardElement of cardElements) {
             cardElement.classList.add('show','open');
             count = count + 1;
         }
         //flip cards back over after 2 second
         setTimeout(function() {
             let count = 0;
-            for (cardElement of cardElements) {
+            for (const cardElement of cardElements) {
                 cardElement.classList.remove('show','open');
                 count = count + 1;
             }

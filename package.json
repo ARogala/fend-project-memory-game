@@ -1,0 +1,23 @@
+{
+  "name": "fend-project-memory-game",
+  "version": "1.0.0",
+  "description": "Memory Match Game",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ARogala/fend-project-memory-game.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ARogala/fend-project-memory-game/issues"
+  },
+  "homepage": "https://github.com/ARogala/fend-project-memory-game#readme",
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}
