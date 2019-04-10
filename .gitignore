@@ -3,4 +3,5 @@
 .stylelintrc
 .eslintrc.json
 node_modules
+dist
 

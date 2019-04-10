@@ -1,4 +1,6 @@
 import {StopWatchController} from './stopWatchModule';
+import './css/app.css';
+import './css/responsive.css';
 //variables
 const deck = document.getElementsByClassName('deck');
 const cardElements = document.querySelectorAll('.card');
