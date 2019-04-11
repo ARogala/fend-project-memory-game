@@ -1,5 +1,6 @@
 import { StopWatchController } from './stopWatchModule';
 import { processSettings, processSettingsInit } from './processSettings';
+import { starRating } from './starRating';
 import './css/app.css';
 import './css/responsive.css';
 //variables
@@ -219,28 +220,6 @@ function incrementMatchCounter() {
     matchCounter = matchCounter + 1;
 }
 
-function starRating() {
-    //3star
-    if (moveCounter <= 15) {
-        //console.log('3 star');
-        starAmount = 3;
-    }
-    //2star hide both main and winning page elements
-    else if (moveCounter >= 16 && moveCounter <= 20) {
-        stars[2].style.cssText = 'visibility: hidden';
-        stars[5].style.cssText = 'visibility: hidden';
-        starAmount = 2;
-    }
-    //1star hide both main and winning page elements
-    else if (moveCounter >= 21) {
-        stars[1].style.cssText = 'visibility: hidden';
-        stars[2].style.cssText = 'visibility: hidden';
-        stars[4].style.cssText = 'visibility: hidden';
-        stars[5].style.cssText = 'visibility: hidden';
-        starAmount = 1;
-    }
-}
-
 /*
 Remove header score panel and deck from display
 add winner class to container thus displaying the winner background
@@ -262,7 +241,7 @@ function winner() {
     let seconds = secondsElement.innerHTML;
     let deciSeconds = deciSecondsElement.innerHTML;
     results[1].textContent = 'Total Time: ' + minutes + ' ' + seconds + ' ' + deciSeconds;
-    starRating();
+    starRating(moveCounter, starAmount, stars);
     //local storage
     //moves
     if (sessionStorage.getItem('thisMove') === null) {
@@ -440,7 +419,7 @@ function runTheGame(e) {
             //increment moveCounter
             incrementMoveCounter();
             //call star rating logic
-            starRating();
+            starRating(moveCounter, starAmount, stars);
 
             if (openCard1 === openCard2) {
                 //push the matched cards into their array
