@@ -157,9 +157,9 @@ document.getElementById('playAgain').addEventListener('click', function() {
 
 //cheat button
 document.getElementById('cheatBtn').addEventListener('click', runCheat);
-
+//must set moveCounter to 2 once we cheat
 function runCheat() {
-    cheat(moveCounter, startTimer, cheatCount, cardElements, moves)
+   moveCounter = cheat(moveCounter, startTimer, cheatCount, cardElements, moves)
 }
 
 //nav rules
