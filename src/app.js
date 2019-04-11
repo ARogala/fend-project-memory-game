@@ -1,4 +1,5 @@
 import {StopWatchController} from './stopWatchModule';
+import {processSettings, processSettingsInit} from './processSettings';
 import './css/app.css';
 import './css/responsive.css';
 //variables
@@ -57,90 +58,8 @@ const randomCards = [];
 const randomCardTemp = [];
 //variable for secondColor
 let buttonElements = document.querySelectorAll('.button');
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
-processSettingsInit(playRandomDeck);
-
-function shuffleTheDeck(playRandomDeck) {
-
-    if(playRandomDeck === true) {
-        //shuffle random deck
-        shuffle(randomDeck);
-
-        //push 8 random cards from randomDeck onto randomCards
-        for(let i = 0; i < 8; i++) {
-            randomCards.push(randomDeck[i]);
-        }
-
-        //double the card names by adding all 8 randomCards to a temp array
-        //then add all 8 cards from the temp arry onto to 8 randomCards
-        for(let i = 0; i < 8; i++) {
-            randomCardTemp.push(randomCards[i]);
-            randomCards.push(randomCardTemp[i]);
-        }
-        //shuffle the randomCards
-        shuffle(randomCards);
-
-        //get unshuffled cards from html
-        for (const cardElement of cardElements) {
-             unShuffledCards.push(cardElement.firstElementChild.classList[1]);
-        }
-
-        //remove unshuffled default cards and add random cards to page
-        let count = 0;
-        for (const cardElement of cardElements) {
-            cardElement.firstElementChild.classList.remove(unShuffledCards[count]);
-            cardElement.firstElementChild.classList.add(randomCards[count]);
-            count = count + 1;
-        }
-    }
-
-    //default cards
-    else if(playRandomDeck === false) {
-        /*
-         * Create a list that holds all of your cards
-         * Select all 16 card list item elements (querySelectorAll returns a NodeList object)
-         * loop through the NodeList. for each node of cardElements push the first child element's
-         * second class name into an array
-         * maintain and unshuffled deck used to remove old classes
-         */
-        for (const cardElement of cardElements) {
-            cards.push(cardElement.firstElementChild.classList[1]);
-            unShuffledCards.push(cardElement.firstElementChild.classList[1]);
-        }
-
-        //shuffle the cards
-        shuffle(cards);
-
-        /*
-         * Display the cards on the page
-         *
-         *   - loop through the NodeList. for each node of cardElements replace the first child element's
-         *     old card class name with the new shuffled card class name
-         *   - Thus shuffling the icons on the page
-         */
-
-        let count = 0;
-        for (const cardElement of cardElements) {
-            cardElement.firstElementChild.classList.remove(unShuffledCards[count]);
-            cardElement.firstElementChild.classList.add(cards[count]);
-            count = count + 1;
-        }
-    }
-}
+processSettingsInit(playRandomDeck, cardElements, cards, unShuffledCards, randomDeck, randomCards, randomCardTemp, nav, container, deck, buttonElements);
 
 //set the event listener on the entire deck
 deck[0].addEventListener('click', runTheGame);
@@ -360,61 +279,6 @@ function about() {
     aboutElement[0].style.cssText    = 'display: initial';
 }
 // END NAV menu functions
-
-//initialize the settings for the game
-function processSettingsInit(playRandomDeck) {
-    //shuffle the deck even when no settings were set
-    if(sessionStorage.getItem('CardTheme') === null) {
-        shuffleTheDeck(playRandomDeck);
-    }
-    //once settings have been set shuffle the deck with the right logical variable
-    else {
-        playRandomDeck = sessionStorage.getItem('CardTheme');
-        playRandomDeck = JSON.parse(playRandomDeck);
-        shuffleTheDeck(playRandomDeck);
-    }
-    //only change color when second color theme has been picked
-    if(JSON.parse(sessionStorage.getItem('ColorTheme')) === true) {
-        changeColor();
-    }
-}
-
-//process settings when change settings button is clicked
-function processSettings(e) {
-    e.preventDefault();
-    let defaultCardTheme, randomCardTheme, defaultColor, secondColor;
-    defaultCardTheme = document.getElementById('getSettings').elements[0].checked;
-    randomCardTheme  = document.getElementById('getSettings').elements[1].checked;
-    defaultColor     = document.getElementById('getSettings').elements[2].checked;
-    secondColor      = document.getElementById('getSettings').elements[3].checked;
-    //card theme logical storage
-    if(defaultCardTheme === false) {
-        sessionStorage.setItem('CardTheme', randomCardTheme);
-    }
-    else if(defaultCardTheme === true) {
-        sessionStorage.setItem('CardTheme', randomCardTheme);
-    }
-    //color theme logical storage
-    if(defaultColor === false) {
-        sessionStorage.setItem('ColorTheme', secondColor);
-    }
-    else if(defaultColor === true) {
-        sessionStorage.setItem('ColorTheme', secondColor);
-    }
-}
-
-function changeColor() {
-    nav[0].style.cssText                  = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
-    nav[0].lastElementChild.style.cssText = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
-    container[0].style.cssText            = 'background: linear-gradient(160deg, rgba(255,131,0,.2) 0%, rgba(255,255,0,.2) 100%)';
-    deck[0].style.cssText                 = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
-    //change all the buttons colors
-    let count = 0;
-    for(const buttonElement of buttonElements) {
-        buttonElements[count].style.cssText = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
-        count = count + 1;
-    }
-}
 
 function runTheGame(e) {
     //disable click on deck
