@@ -11,6 +11,14 @@
 
 Check out the game: https://andrewrogalamemorygame.surge.sh
 
+Webpack has been added for development and optimized production build
+
+npm install 
+
+npm run dev
+
+npm run build
+
 ## GamePlayRules
 There are eight different pairs of cards on the grid, thus making a total of sixteen cards.
 The goal is to match all eight pairs in as few moves as possible. The moves are tracked and as the number of
