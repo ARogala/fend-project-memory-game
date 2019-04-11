@@ -246,7 +246,7 @@ function winner() {
     let seconds = secondsElement.innerHTML;
     let deciSeconds = deciSecondsElement.innerHTML;
     results[1].textContent = 'Total Time: ' + minutes + ' ' + seconds + ' ' + deciSeconds;
-    starRating(moveCounter, starAmount, stars);
+    starAmount = starRating(moveCounter, starAmount, stars);
     //local storage
     //moves
     if (sessionStorage.getItem('thisMove') === null) {
@@ -396,7 +396,7 @@ function runTheGame(e) {
             //increment moveCounter
             incrementMoveCounter();
             //call star rating logic
-            starRating(moveCounter, starAmount, stars);
+            starAmount = starRating(moveCounter, starAmount, stars);
 
             if (openCard1 === openCard2) {
                 //push the matched cards into their array
