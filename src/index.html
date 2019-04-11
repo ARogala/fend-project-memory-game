@@ -1,201 +1,200 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Memory Matching Game</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-</head>
-<body>
-
-    <div class="container">
-
-        <nav id="drawer" class="nav">
-            <header class="header">
-                <h1>Memory Match</h1>
-            </header>
-            <input type="checkbox" class="nav__checkbox" id="navi-toggle">
-            <label for="navi-toggle" class="nav__button">
-                <i class="fas fa-bars fa-2x"></i>
-            </label>
-            <ul class="nav__list">
-                <li class="nav__item"><button id="rulesBtn" class="button">Rules</button></li>
-                <li class="nav__item"><button id="settingsBtn" class="button">Settings</button></li>
-                <li class="nav__item"><button id="aboutBtn" class="button">About</button></li>
-            </ul>
-        </nav>
-
-        <section class="cheat">
-            <div class="buttonContainer">
-                <button id="cheatBtn" class="button">Cheat!!</button>
-            </div>
-        </section>
-
-        <section class="score-panel">
-        	<ul class="stars">
-        		<li><i class="fas fa-star"></i></li>
-        		<li><i class="fas fa-star"></i></li>
-        		<li><i class="fas fa-star"></i></li>
-        	</ul>
-
-        	<span class="moves">0</span> Moves
-
-            <div class="timerDisplay">
-                <div id="hoursElapsed" class="output">
-                    00:
-                </div>
-                <div id="minutesElapsed" class="output">
-                    00:
-                </div>
-                <div id="secondsElapsed" class="output">
-                    00.
-                </div>
-                <div id="deciSecondsElapsed" class="output">
-                    00
-                </div>
-            </div>
-
-            <div class="restart">
-        		<i class="fas fa-sync"></i>
-        	</div>
-        </section>
-
-        <section class="winnerMsg">
-            <h2>Congratulations</h2>
-            <h2>You Won!</h2>
-            <ul class="results">
-                <li>Total Moves:</li>
-                <li>Total Time:</li>
-                <li>Star Rating</li>
-                <ul class="stars">
-                    <li><i class="fa fa-star"></i></li>
-                    <li><i class="fa fa-star"></i></li>
-                    <li><i class="fa fa-star"></i></li>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Memory Matching Game</title>
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+            integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda" />
+    </head>
+    <body>
+        <div class="container">
+            <nav id="drawer" class="nav">
+                <header class="header">
+                    <h1>Memory Match</h1>
+                </header>
+                <input type="checkbox" class="nav__checkbox" id="navi-toggle" />
+                <label for="navi-toggle" class="nav__button">
+                    <i class="fas fa-bars fa-2x"></i>
+                </label>
+                <ul class="nav__list">
+                    <li class="nav__item"><button id="rulesBtn" class="button">Rules</button></li>
+                    <li class="nav__item"><button id="settingsBtn" class="button">Settings</button></li>
+                    <li class="nav__item"><button id="aboutBtn" class="button">About</button></li>
                 </ul>
-            </ul>
-            <div class="buttonContainer">
-                <button id="playAgain" class="button">Play Again</button>
-            </div>
-            <h3>Previous Stats</h3>
-            <ul class="previousResults">
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </section>
+            </nav>
 
-        <section class="rules">
-            <h2>Memory Match Rules</h2>
-            <p>There are eight different pairs of cards on the grid, thus making a total of sixteen cards.
-                The goal is to match all eight pairs in as few moves as possible. The moves are tracked and as the number of
-                moves increases the star rating drops.
-                The star rating is as follows:</p>
+            <section class="cheat">
+                <div class="buttonContainer">
+                    <button id="cheatBtn" class="button">Cheat!!</button>
+                </div>
+            </section>
+
+            <section class="score-panel">
+                <ul class="stars">
+                    <li><i class="fas fa-star"></i></li>
+                    <li><i class="fas fa-star"></i></li>
+                    <li><i class="fas fa-star"></i></li>
+                </ul>
+
+                <span class="moves">0</span> Moves
+
+                <div class="timerDisplay">
+                    <div id="hoursElapsed" class="output">
+                        00:
+                    </div>
+                    <div id="minutesElapsed" class="output">
+                        00:
+                    </div>
+                    <div id="secondsElapsed" class="output">
+                        00.
+                    </div>
+                    <div id="deciSecondsElapsed" class="output">
+                        00
+                    </div>
+                </div>
+
+                <div class="restart">
+                    <i class="fas fa-sync"></i>
+                </div>
+            </section>
+
+            <section class="winnerMsg">
+                <h2>Congratulations</h2>
+                <h2>You Won!</h2>
+                <ul class="results">
+                    <li>Total Moves:</li>
+                    <li>Total Time:</li>
+                    <li>Star Rating</li>
+                    <ul class="stars">
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                    </ul>
+                </ul>
+                <div class="buttonContainer">
+                    <button id="playAgain" class="button">Play Again</button>
+                </div>
+                <h3>Previous Stats</h3>
+                <ul class="previousResults">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </section>
+
+            <section class="rules">
+                <h2>Memory Match Rules</h2>
+                <p>
+                    There are eight different pairs of cards on the grid, thus making a total of sixteen cards. The goal
+                    is to match all eight pairs in as few moves as possible. The moves are tracked and as the number of
+                    moves increases the star rating drops. The star rating is as follows:
+                </p>
                 <ul>
                     <li>Less than or equal to fifteen (15) moves results in a three (3) star win</li>
                     <li>Between sixteen (16) and twenty (20) moves results in a two (2) star win</li>
-                    <li> Over twenty (20) moves results in a one (1) star win</li>
+                    <li>Over twenty (20) moves results in a one (1) star win</li>
                 </ul>
-                <p>There is a cheat button on top which can be activated only once before any moves are made.
-                The cheat will flash all cards for two seconds,
-                but applies a penalty of two (2) moves.</p>
+                <p>
+                    There is a cheat button on top which can be activated only once before any moves are made. The cheat
+                    will flash all cards for two seconds, but applies a penalty of two (2) moves.
+                </p>
 
                 <div class="buttonContainer">
                     <button id="return1" class="button">Return to game</button>
                 </div>
+            </section>
 
-        </section>
+            <section class="settings">
+                <form id="getSettings">
+                    <label for="defaultCardTheme">Default Card Theme:</label>
+                    <input type="radio" id="defaultCardTheme" class="input" name="CardTheme" value="defaultCard" />
+                    <br />
 
-        <section class="settings">
-            <form id="getSettings">
+                    <label for="randomCardTheme">Random Card Theme:</label>
+                    <input type="radio" id="randomCardTheme" class="input" name="CardTheme" value="randomCard" />
+                    <br />
 
-                <label for="defaultCardTheme">Default Card Theme:</label>
-                <input type="radio" id="defaultCardTheme" class="input" name="CardTheme" value="defaultCard">
-                <br>
+                    <label for="defaultColorTheme">Default Color Theme:</label>
+                    <input type="radio" id="defaultColorTheme" class="input" name="ColorTheme" value="defaultColor" />
+                    <br />
 
-                <label for="randomCardTheme">Random Card Theme:</label>
-                <input type="radio" id="randomCardTheme" class="input" name="CardTheme" value="randomCard">
-                <br>
+                    <label for="secondColorTheme">Second Color Theme:</label>
+                    <input type="radio" id="secondColorTheme" class="input" name="ColorTheme" value="secondColor" />
 
-                <label for="defaultColorTheme">Default Color Theme:</label>
-                <input type="radio" id="defaultColorTheme" class="input" name="ColorTheme" value="defaultColor">
-                <br>
+                    <div class="buttonContainer">
+                        <button type="submit" value="Submit" class="button">Change Settings</button>
+                        <button type="reset" value="Reset" class="button">Return to Game</button>
+                    </div>
+                </form>
+            </section>
 
-                <label for="secondColorTheme">Second Color Theme:</label>
-                <input type="radio" id="secondColorTheme" class="input" name="ColorTheme" value="secondColor">
-
+            <section class="about">
+                <h2>About Memory Match</h2>
+                <p>
+                    Memory match was initially programmed for Udacity's front end nano degree. Since then I have added
+                    lots of feautes. Enjoy!
+                </p>
                 <div class="buttonContainer">
-                    <button type="submit" value="Submit" class="button">Change Settings</button>
-                    <button type="reset" value="Reset" class="button">Return to Game</button>
+                    <button id="return2" class="button">Return to game</button>
                 </div>
-            </form>
-        </section>
+            </section>
 
-        <section class="about">
-            <h2>About Memory Match</h2>
-            <p>Memory match was initially programmed for Udacity's front end nano degree. Since then I have
-            added lots of feautes. Enjoy!</p>
-            <div class="buttonContainer">
-                <button id="return2" class="button">Return to game</button>
-            </div>
-        </section>
-
-        <ul class="deck">
-            <li id="card1" class="card">
-                <i class="fas fa-dove"></i>
-            </li>
-            <li id="card2" class="card">
-                <i class="fas fa-dove"></i>
-            </li>
-            <li id="card3" class="card">
-                <i class="fas fa-feather"></i>
-            </li>
-            <li id="card4" class="card">
-                <i class="fas fa-feather"></i>
-            </li>
-            <li id="card5" class="card">
-                <i class="fas fa-frog"></i>
-            </li>
-            <li id="card6" class="card">
-                <i class="fas fa-frog"></i>
-            </li>
-            <li id="card7" class="card">
-                <i class="fas fa-kiwi-bird"></i>
-            </li>
-            <li id="card8" class="card">
-                <i class="fas fa-kiwi-bird"></i>
-            </li>
-            <li id="card9" class="card">
-                <i class="fas fa-church"></i>
-            </li>
-            <li id="card10" class="card">
-                <i class="fas fa-church"></i>
-            </li>
-            <li id="card11" class="card">
-                <i class="fas fa-gift"></i>
-            </li>
-            <li id="card12" class="card">
-                <i class="fas fa-gift"></i>
-            </li>
-            <li id="card13" class="card">
-                <i class="fas fa-piggy-bank"></i>
-            </li>
-            <li id="card14" class="card">
-                <i class="fas fa-piggy-bank"></i>
-            </li>
-            <li id="card15" class="card">
-                <i class="fas fa-heart"></i>
-            </li>
-            <li id="card16" class="card">
-                <i class="fas fa-heart"></i>
-            </li>
-        </ul>
-    </div>
-</body>
+            <ul class="deck">
+                <li id="card1" class="card">
+                    <i class="fas fa-dove"></i>
+                </li>
+                <li id="card2" class="card">
+                    <i class="fas fa-dove"></i>
+                </li>
+                <li id="card3" class="card">
+                    <i class="fas fa-feather"></i>
+                </li>
+                <li id="card4" class="card">
+                    <i class="fas fa-feather"></i>
+                </li>
+                <li id="card5" class="card">
+                    <i class="fas fa-frog"></i>
+                </li>
+                <li id="card6" class="card">
+                    <i class="fas fa-frog"></i>
+                </li>
+                <li id="card7" class="card">
+                    <i class="fas fa-kiwi-bird"></i>
+                </li>
+                <li id="card8" class="card">
+                    <i class="fas fa-kiwi-bird"></i>
+                </li>
+                <li id="card9" class="card">
+                    <i class="fas fa-church"></i>
+                </li>
+                <li id="card10" class="card">
+                    <i class="fas fa-church"></i>
+                </li>
+                <li id="card11" class="card">
+                    <i class="fas fa-gift"></i>
+                </li>
+                <li id="card12" class="card">
+                    <i class="fas fa-gift"></i>
+                </li>
+                <li id="card13" class="card">
+                    <i class="fas fa-piggy-bank"></i>
+                </li>
+                <li id="card14" class="card">
+                    <i class="fas fa-piggy-bank"></i>
+                </li>
+                <li id="card15" class="card">
+                    <i class="fas fa-heart"></i>
+                </li>
+                <li id="card16" class="card">
+                    <i class="fas fa-heart"></i>
+                </li>
+            </ul>
+        </div>
+    </body>
 </html>
-
-
-
-
-
-
