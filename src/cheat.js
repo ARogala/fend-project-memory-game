@@ -1,8 +1,10 @@
 import { StopWatchController } from './stopWatchModule';
-export function cheat(moveCounter, startTimer, cheatCount, cardElements, moves) {
+import { cardElements, moves } from './DOMelements';
+import { variables } from './variables';
+export function cheat() {
     //only cheat before moves are made and only allow one cheat
     //cheating will cost 2 moves
-    if (moveCounter === 0 && startTimer === true && cheatCount === 0) {
+    if (variables.moveCounter === 0 && variables.startTimer === true && variables.cheatCount === 0) {
         //show the cards
         let count = 0;
         for (const cardElement of cardElements) {
@@ -20,11 +22,11 @@ export function cheat(moveCounter, startTimer, cheatCount, cardElements, moves) 
         /*increment cheatCount, add and display
         cheat move penalty, start stop watch and set startTimer to false
         preventing a second call to startStopWatch()*/
-        cheatCount = cheatCount + 1;
-        moveCounter = 2;
-        moves[0].textContent = moveCounter;
+        variables.cheatCount = variables.cheatCount + 1;
+        variables.moveCounter = 2;
+        moves[0].textContent = variables.moveCounter;
         StopWatchController.startStopWatch();
-        startTimer = false;
-        return [moveCounter, startTimer, cheatCount];
+        variables.startTimer = false;
+        // return [variables.moveCounter, variables.startTimer, variables.cheatCount];
     }
 }

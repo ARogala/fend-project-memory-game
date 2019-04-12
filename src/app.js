@@ -67,16 +67,7 @@ document.getElementById('playAgain').addEventListener('click', function() {
 });
 
 //cheat button
-document.getElementById('cheatBtn').addEventListener('click', runCheat);
-//must set moveCounter to 2 once we cheat
-function runCheat() {
-    let returnedVals = cheat(moveCounter, startTimer, cheatCount, cardElements, moves);
-    if (returnedVals !== undefined) {
-        moveCounter = returnedVals[0];
-        startTimer = returnedVals[1];
-        cheatCount = returnedVals[2];
-    }
-}
+document.getElementById('cheatBtn').addEventListener('click', cheat);
 
 function populateArrays(e) {
     targetIDs.push(e.target.id);
