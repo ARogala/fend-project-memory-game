@@ -1,4 +1,4 @@
-import { processSettingsInit } from './processSettings';
+import { processSettingsInit, processSettings } from './processSettings';
 import { cheat } from './cheat';
 import { runTheGame } from './runTheGame';
 import { rules, settings, about } from './nav';
@@ -23,3 +23,28 @@ document.getElementById('playAgain').addEventListener('click', function() {
 
 //cheat button
 document.getElementById('cheatBtn').addEventListener('click', cheat);
+
+//nav rules
+document.getElementById('rulesBtn').addEventListener('click', rules);
+
+//nav settings
+document.getElementById('settingsBtn').addEventListener('click', settings);
+
+//nav about
+document.getElementById('aboutBtn').addEventListener('click', about);
+
+//return to game from setting and about pages
+document.getElementById('return1').addEventListener('click', function() {
+    window.location.reload(true);
+});
+
+document.getElementById('return2').addEventListener('click', function() {
+    window.location.reload(true);
+});
+
+//setting page event listeners
+document.getElementById('getSettings').addEventListener('submit', processSettings);
+
+document.getElementById('getSettings').addEventListener('reset', function() {
+    window.location.reload(true);
+});
