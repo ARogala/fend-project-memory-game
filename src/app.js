@@ -2,16 +2,35 @@ import { StopWatchController } from './stopWatchModule';
 import { processSettings, processSettingsInit } from './processSettings';
 import { starRating } from './starRating';
 import { cheat } from './cheat';
-import { winner } from './winner.js';
+import { winner } from './winner';
 import { randomDeck } from './randomDeck';
+import {
+    deck,
+    cardElements,
+    restart,
+    moves,
+    stars,
+    header,
+    cheatElement,
+    scorePanel,
+    container,
+    winnerMsg,
+    results,
+    previousResults,
+    minutesElement,
+    secondsElement,
+    deciSecondsElement,
+    nav,
+    rulesElement,
+    settingsElement,
+    aboutElement,
+    buttonElements
+} from './DOMelements';
 import './css/app.css';
 import './css/responsive.css';
 //variables
-const deck = document.getElementsByClassName('deck');
-const cardElements = document.querySelectorAll('.card');
 const cards = [];
 const unShuffledCards = [];
-const restart = document.getElementsByClassName('fa-sync');
 //create arrays for open cards and targetIDs
 let openCards = [];
 let targetIDs = [];
@@ -19,39 +38,17 @@ let targetIDs = [];
 let matchedCards = [];
 //variables for move counter and timer
 let moveCounter = 0;
-let moves = document.getElementsByClassName('moves');
 let startTimer = true;
 //variable for match counter
 let matchCounter = 0;
 //variable for star rating
-let stars = document.getElementsByClassName('fa-star');
 let starAmount = 0;
-//variables for winner function
-let header = document.getElementsByClassName('header');
-let cheatElement = document.getElementsByClassName('cheat');
-let scorePanel = document.getElementsByClassName('score-panel');
-let container = document.getElementsByClassName('container');
-let winnerMsg = document.getElementsByClassName('winnerMsg');
-let results = winnerMsg[0].childNodes[5].getElementsByTagName('li');
-let previousResults = winnerMsg[0].childNodes[11].getElementsByTagName('li');
-let minutesElement = document.getElementById('minutesElapsed');
-let secondsElement = document.getElementById('secondsElapsed');
-let deciSecondsElement = document.getElementById('deciSecondsElapsed');
-
-//var for nav functions
-let nav = document.getElementsByClassName('nav');
-let rulesElement = document.getElementsByClassName('rules');
-let settingsElement = document.getElementsByClassName('settings');
-let aboutElement = document.getElementsByClassName('about');
 //variable for cheat function
 let cheatCount = 0;
 //variables for random shuffled deck
 let playRandomDeck = false;
-
 const randomCards = [];
 const randomCardTemp = [];
-//variable for secondColor
-let buttonElements = document.querySelectorAll('.button');
 
 processSettingsInit(
     playRandomDeck,
@@ -85,11 +82,11 @@ document.getElementById('cheatBtn').addEventListener('click', runCheat);
 //must set moveCounter to 2 once we cheat
 function runCheat() {
     let returnedVals = cheat(moveCounter, startTimer, cheatCount, cardElements, moves);
-    if(returnedVals !== undefined) {
+    if (returnedVals !== undefined) {
         moveCounter = returnedVals[0];
         startTimer = returnedVals[1];
         cheatCount = returnedVals[2];
-    }  
+    }
 }
 
 //nav rules
