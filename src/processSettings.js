@@ -1,8 +1,7 @@
 import { shuffleTheDeck } from './shuffleTheDeck';
 import { cardElements, nav, container, deck, buttonElements } from './DOMelements';
 import { variables } from './variables';
-import { cards, unShuffledCards, randomCards, randomCardTemp } from './constants';
-import { randomDeck } from './randomDeck';
+import { cards, unShuffledCards, randomDeck, randomCards, randomCardTemp } from './constants';
 //initialize the settings for the game
 export function processSettingsInit() {
     //shuffle the deck even when no settings were set
