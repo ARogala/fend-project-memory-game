@@ -1,27 +1,34 @@
 import { shuffleTheDeck } from './shuffleTheDeck';
+import { cardElements, nav, container, deck, buttonElements } from './DOMelements';
+import { variables } from './variables';
+import { randomDeck } from './randomDeck';
 //initialize the settings for the game
-export function processSettingsInit(
-    playRandomDeck,
-    cardElements,
-    cards,
-    unShuffledCards,
-    randomDeck,
-    randomCards,
-    randomCardTemp,
-    nav,
-    container,
-    deck,
-    buttonElements
-) {
+export function processSettingsInit() {
     //shuffle the deck even when no settings were set
     if (sessionStorage.getItem('CardTheme') === null) {
-        shuffleTheDeck(playRandomDeck, cardElements, cards, unShuffledCards, randomDeck, randomCards, randomCardTemp);
+        shuffleTheDeck(
+            variables.playRandomDeck,
+            cardElements,
+            variables.cards,
+            variables.unShuffledCards,
+            randomDeck,
+            variables.randomCards,
+            variables.randomCardTemp
+        );
     }
     //once settings have been set shuffle the deck with the right logical variable
     else {
-        playRandomDeck = sessionStorage.getItem('CardTheme');
-        playRandomDeck = JSON.parse(playRandomDeck);
-        shuffleTheDeck(playRandomDeck, cardElements, cards, unShuffledCards, randomDeck, randomCards, randomCardTemp);
+        variables.playRandomDeck = sessionStorage.getItem('CardTheme');
+        variables.playRandomDeck = JSON.parse(variables.playRandomDeck);
+        shuffleTheDeck(
+            variables.playRandomDeck,
+            cardElements,
+            variables.cards,
+            variables.unShuffledCards,
+            randomDeck,
+            variables.randomCards,
+            variables.randomCardTemp
+        );
     }
     //only change color when second color theme has been picked
     if (JSON.parse(sessionStorage.getItem('ColorTheme')) === true) {

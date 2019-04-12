@@ -47,23 +47,11 @@ let starAmount = 0;
 //variable for cheat function
 let cheatCount = 0;
 //variables for random shuffled deck
-let playRandomDeck = false;
+// let playRandomDeck = false;
 const randomCards = [];
 const randomCardTemp = [];
 
-processSettingsInit(
-    playRandomDeck,
-    cardElements,
-    cards,
-    unShuffledCards,
-    randomDeck,
-    randomCards,
-    randomCardTemp,
-    nav,
-    container,
-    deck,
-    buttonElements
-);
+processSettingsInit();
 
 //set the event listener on the entire deck
 deck[0].addEventListener('click', runTheGame);
