@@ -2,16 +2,9 @@ import { StopWatchController } from './stopWatchModule';
 import { starRating } from './starRating';
 import { winner } from './winner';
 import { variables } from './variables';
+import { openCards, targetIDs, matchedCards} from './constants';
 import { moves, stars } from './DOMelements';
 export function runTheGame(e) {
-    const openCards = variables.openCards;
-    const targetIDs = variables.targetIDs;
-    const matchedCards = variables.matchedCards;
-    let matchCounter = variables.matchCounter;
-    let moveCounter = variables.moveCounter;
-    let starAmount = variables.starAmount;
-    let startTimer = variables.startTimer;
-
     //disable click on deck
     if (e.target.classList[0] === 'deck') {
         //do nothing
@@ -21,13 +14,12 @@ export function runTheGame(e) {
         //run game logic
 
         //populate arrays
-        populateArrays(e, targetIDs, openCards);
+        populateArrays(e);
 
         //display the first card clicked
-        showOpenCard(e, 0, openCards);
+        showOpenCard(e, 0);
         //start the game timer
-        console.log(startTimer);
-        if (startTimer === true) {
+        if (variables.startTimer === true) {
             StopWatchController.startStopWatch();
             variables.startTimer = false;
         }
@@ -95,9 +87,9 @@ export function runTheGame(e) {
             let openCard2 = openCards[1].firstElementChild.classList[1];
 
             //increment moveCounter
-            incrementMoveCounter(moveCounter);
+            incrementMoveCounter();
             //call star rating logic
-            starAmount = starRating(moveCounter, starAmount, stars);
+            variables.starAmount = starRating(variables.moveCounter, variables.starAmount, stars);
 
             if (openCard1 === openCard2) {
                 //push the matched cards into their array
@@ -107,14 +99,14 @@ export function runTheGame(e) {
                 targetIDs.pop();
                 targetIDs.pop();
                 //show the 2nd open card
-                showOpenCard(e, 1, openCards);
+                showOpenCard(e, 1);
                 //increment match counter
-                incrementMatchCounter(matchCounter);
+                incrementMatchCounter();
                 //delay the removal of open cards and the addition of matched cards
                 //this allows cardOpen animation to play on 2nd open card
                 setTimeout(function() {
-                    removeOpenCards(e, openCards);
-                    showMatchedCards(e, openCards);
+                    removeOpenCards(e);
+                    showMatchedCards(e);
                     openCards.pop();
                     openCards.pop();
                 }, 500);
@@ -123,17 +115,17 @@ export function runTheGame(e) {
                 targetIDs.pop();
                 targetIDs.pop();
                 //show the 2nd open card
-                showOpenCard(e, 1, openCards);
+                showOpenCard(e, 1);
                 //delay cardNotMatch animation
                 //this allows the cardOpen animation to play on 2nd open card
                 setTimeout(function() {
-                    cardNotMatch(e, openCards);
+                    cardNotMatch(e);
                 }, 500);
                 //delay the removal of classes allowing both animations to play first
                 //also gives user a chance to remember the cards
                 setTimeout(function() {
-                    removeOpenCards(e, openCards);
-                    removeCardNotMatch(e, openCards);
+                    removeOpenCards(e);
+                    removeCardNotMatch(e);
                     openCards.pop();
                     openCards.pop();
                 }, 1500);
@@ -143,47 +135,47 @@ export function runTheGame(e) {
         //check match counter if === 8 play won the game
         //stop the timer and display win page
         //delay winner allowing user to see the last move
-        if (matchCounter === 8) {
+        if (variables.matchCounter === 8) {
             StopWatchController.stopStopWatch();
             setTimeout(winner, 1500);
         }
     }
 }
 
-function populateArrays(e, targetIDs, openCards) {
+function populateArrays(e) {
     targetIDs.push(e.target.id);
     openCards.push(e.target);
 }
 
-function showOpenCard(e, array_position, openCards) {
+function showOpenCard(e, array_position) {
     openCards[array_position].classList.add('show', 'open');
 }
 
-function cardNotMatch(e, openCards) {
+function cardNotMatch(e) {
     openCards[0].classList.add('animate');
     openCards[1].classList.add('animate');
 }
 
-function removeCardNotMatch(e, openCards) {
+function removeCardNotMatch(e) {
     openCards[0].classList.remove('animate');
     openCards[1].classList.remove('animate');
 }
 
-function removeOpenCards(e, openCards) {
+function removeOpenCards(e) {
     openCards[0].classList.remove('show', 'open');
     openCards[1].classList.remove('show', 'open');
 }
 
-function showMatchedCards(e, openCards) {
+function showMatchedCards(e) {
     openCards[0].classList.add('match');
     openCards[1].classList.add('match');
 }
 
-function incrementMoveCounter(moveCounter) {
-    moveCounter = moveCounter + 1;
-    moves[0].textContent = moveCounter;
+function incrementMoveCounter() {
+    variables.moveCounter = variables.moveCounter + 1;
+    moves[0].textContent = variables.moveCounter;
 }
 
-function incrementMatchCounter(matchCounter) {
-    matchCounter = matchCounter + 1;
+function incrementMatchCounter() {
+    variables.matchCounter = variables.matchCounter + 1;
 }

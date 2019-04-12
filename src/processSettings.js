@@ -1,6 +1,7 @@
 import { shuffleTheDeck } from './shuffleTheDeck';
 import { cardElements, nav, container, deck, buttonElements } from './DOMelements';
 import { variables } from './variables';
+import { cards, unShuffledCards, randomCards, randomCardTemp } from './constants';
 import { randomDeck } from './randomDeck';
 //initialize the settings for the game
 export function processSettingsInit() {
@@ -9,11 +10,11 @@ export function processSettingsInit() {
         shuffleTheDeck(
             variables.playRandomDeck,
             cardElements,
-            variables.cards,
-            variables.unShuffledCards,
+            cards,
+            unShuffledCards,
             randomDeck,
-            variables.randomCards,
-            variables.randomCardTemp
+            randomCards,
+            randomCardTemp
         );
     }
     //once settings have been set shuffle the deck with the right logical variable
@@ -23,11 +24,11 @@ export function processSettingsInit() {
         shuffleTheDeck(
             variables.playRandomDeck,
             cardElements,
-            variables.cards,
-            variables.unShuffledCards,
+            cards,
+            unShuffledCards,
             randomDeck,
-            variables.randomCards,
-            variables.randomCardTemp
+            randomCards,
+            randomCardTemp
         );
     }
     //only change color when second color theme has been picked
