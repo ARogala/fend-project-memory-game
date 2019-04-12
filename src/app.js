@@ -1,5 +1,5 @@
 import { StopWatchController } from './stopWatchModule';
-import { processSettings, processSettingsInit } from './processSettings';
+import { processSettingsInit } from './processSettings';
 import { starRating } from './starRating';
 import { cheat } from './cheat';
 import { winner } from './winner';
@@ -89,31 +89,6 @@ function runCheat() {
         cheatCount = returnedVals[2];
     }
 }
-
-//nav rules
-document.getElementById('rulesBtn').addEventListener('click', rules);
-
-//nav settings
-document.getElementById('settingsBtn').addEventListener('click', settings);
-
-//nav about
-document.getElementById('aboutBtn').addEventListener('click', about);
-
-//return to game from setting and about pages
-document.getElementById('return1').addEventListener('click', function() {
-    window.location.reload(true);
-});
-
-document.getElementById('return2').addEventListener('click', function() {
-    window.location.reload(true);
-});
-
-//setting page event listeners
-document.getElementById('getSettings').addEventListener('submit', processSettings);
-
-document.getElementById('getSettings').addEventListener('reset', function() {
-    window.location.reload(true);
-});
 
 function populateArrays(e) {
     targetIDs.push(e.target.id);

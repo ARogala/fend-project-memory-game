@@ -1,3 +1,4 @@
+import { processSettings } from './processSettings';
 import {
     header,
     cheatElement,
@@ -42,3 +43,28 @@ export function about() {
     container[0].classList.add('winner');
     aboutElement[0].style.cssText = 'display: initial';
 }
+
+//nav rules
+document.getElementById('rulesBtn').addEventListener('click', rules);
+
+//nav settings
+document.getElementById('settingsBtn').addEventListener('click', settings);
+
+//nav about
+document.getElementById('aboutBtn').addEventListener('click', about);
+
+//return to game from setting and about pages
+document.getElementById('return1').addEventListener('click', function() {
+    window.location.reload(true);
+});
+
+document.getElementById('return2').addEventListener('click', function() {
+    window.location.reload(true);
+});
+
+//setting page event listeners
+document.getElementById('getSettings').addEventListener('submit', processSettings);
+
+document.getElementById('getSettings').addEventListener('reset', function() {
+    window.location.reload(true);
+});
