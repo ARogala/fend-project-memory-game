@@ -249,26 +249,7 @@ function runTheGame(e) {
         //delay winner allowing user to see the last move
         if (matchCounter === 8) {
             StopWatchController.stopStopWatch();
-            setTimeout(
-                winner(
-                    header,
-                    cheatElement,
-                    scorePanel,
-                    deck,
-                    nav,
-                    container,
-                    winnerMsg,
-                    results,
-                    moveCounter,
-                    minutesElement,
-                    secondsElement,
-                    deciSecondsElement,
-                    starAmount,
-                    stars,
-                    previousResults
-                ),
-                1500
-            );
+            setTimeout(winner,1500);
         }
     }
 }
