@@ -25,6 +25,6 @@ export function cheat(moveCounter, startTimer, cheatCount, cardElements, moves) 
         moves[0].textContent = moveCounter;
         StopWatchController.startStopWatch();
         startTimer = false;
-        return moveCounter;
+        return [moveCounter, startTimer, cheatCount];
     }
 }

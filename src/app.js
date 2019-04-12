@@ -84,7 +84,12 @@ document.getElementById('playAgain').addEventListener('click', function() {
 document.getElementById('cheatBtn').addEventListener('click', runCheat);
 //must set moveCounter to 2 once we cheat
 function runCheat() {
-    moveCounter = cheat(moveCounter, startTimer, cheatCount, cardElements, moves);
+    let returnedVals = cheat(moveCounter, startTimer, cheatCount, cardElements, moves);
+    if(returnedVals !== undefined) {
+        moveCounter = returnedVals[0];
+        startTimer = returnedVals[1];
+        cheatCount = returnedVals[2];
+    }  
 }
 
 //nav rules
