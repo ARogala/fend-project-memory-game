@@ -1,5 +1,5 @@
 describe('Cheat function', function() {
-	it('Shows all cards for 2 sec', function() {
+	it('Shows all cards for 2 sec. Second Btn click does not show cards.', function() {
 		cy.visit('/');
 		cy.clock();
 		cy.get('#cheatBtn')
@@ -12,11 +12,16 @@ describe('Cheat function', function() {
 				});
 			});
 		cy.tick(2500);
-		cy.get('.card').then(cardElements => {
-			for (const cardElement of cardElements) {
-				expect(cardElement.classList.value).to.equal('card');
-			}
-		});
+
+		cy.get('#cheatBtn')
+			.click()
+			.then(() => {
+				cy.get('.card').then(cardElements => {
+					for (const cardElement of cardElements) {
+						expect(cardElement.classList.value).to.equal('card');
+					}
+				});
+			});
 	});
 
 	it('Increments Moves by 2', function() {
