@@ -46,4 +46,17 @@ describe('Test Run The Game', function() {
 			});
 		});
 	});
+
+	it('On match cards should show', function() {
+		cy.visit('/');
+		cy.getMatchedCards().then(matchedCards => {
+			cy.clickMatchedCards(matchedCards, 1);
+			cy.wait(2000).then(() => {
+				cy.getMatchedCards().then(newMatchedCards => {
+					expect(newMatchedCards[0].classList.value).to.equal('card match');
+					expect(newMatchedCards[1].classList.value).to.equal('card match');
+				});
+			});
+		});
+	});
 });
