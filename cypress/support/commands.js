@@ -23,3 +23,42 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('getMatchedCards', () => {
+	let cardElements = [];
+	cy.get('.card').then(cardDOM => {
+		cardElements = cardDOM;
+		let cards = [];
+		for (const cardElement of cardElements) {
+			cards.push(cardElement.firstElementChild.classList[1]);
+		}
+
+		let matchedCards = [];
+		for (let i = 0; i < cardElements.length; i++) {
+			for (let j = i + 1; j < cards.length; j++) {
+				if (cardElements[i].firstElementChild.classList[1] === cards[j]) {
+					matchedCards.push(cardElements[i]);
+					matchedCards.push(cardElements[j]);
+				}
+			}
+		}
+		return matchedCards;
+	});
+});
+
+//8 is the max num of matches
+Cypress.Commands.add('clickMatchedCards', (matchedCards, numMatches) => {
+	//must time matched Cards click
+	function timeMatchCards() {
+		setTimeout(matchCards, 500);
+	}
+	let matchedIndex = 0;
+	function matchCards() {
+		matchedCards[matchedIndex].click();
+		matchedIndex++;
+		if (matchedIndex < numMatches*2) {
+			timeMatchCards();
+		}
+	}
+	timeMatchCards();
+});

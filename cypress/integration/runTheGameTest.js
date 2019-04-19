@@ -1,36 +1,8 @@
 describe('Test Run The Game', function() {
-	it('Matches all cards, displays winner screen, and saves results to session storage.', function() {
+	it('On first win, results should be saved and displayed', function() {
 		cy.visit('/');
-		let cardElements = [];
-		cy.get('.card').then(cardDOM => {
-			cardElements = cardDOM;
-			let cards = [];
-			for (const cardElement of cardElements) {
-				cards.push(cardElement.firstElementChild.classList[1]);
-			}
-
-			let matchedCards = [];
-			for (let i = 0; i < cardElements.length; i++) {
-				for (let j = i + 1; j < cards.length; j++) {
-					if (cardElements[i].firstElementChild.classList[1] === cards[j]) {
-						matchedCards.push(cardElements[i]);
-						matchedCards.push(cardElements[j]);
-					}
-				}
-			}
-			//must time matched Cards click
-			function timeMatchCards() {
-				setTimeout(matchCards, 500);
-			}
-			let matchedIndex = 0;
-			function matchCards() {
-				matchedCards[matchedIndex].click();
-				matchedIndex++;
-				if (matchedIndex < matchedCards.length) {
-					timeMatchCards();
-				}
-			}
-			timeMatchCards();
+		cy.getMatchedCards().then(matchedCards => {
+			cy.clickMatchedCards(matchedCards, 8);
 			//after game is won winner screen should be displayed and stats should be saved
 			cy.wait(10000);
 			cy.get('.winnerMsg').then(msg => {
@@ -49,38 +21,10 @@ describe('Test Run The Game', function() {
 		});
 	});
 
-	it('On second win previous stats are displayed and saved', function() {
+	it('On second win, results should be saved and displayed. Previous results should be displayed', function() {
 		cy.visit('/');
-		let cardElements = [];
-		cy.get('.card').then(cardDOM => {
-			cardElements = cardDOM;
-			let cards = [];
-			for (const cardElement of cardElements) {
-				cards.push(cardElement.firstElementChild.classList[1]);
-			}
-
-			let matchedCards = [];
-			for (let i = 0; i < cardElements.length; i++) {
-				for (let j = i + 1; j < cards.length; j++) {
-					if (cardElements[i].firstElementChild.classList[1] === cards[j]) {
-						matchedCards.push(cardElements[i]);
-						matchedCards.push(cardElements[j]);
-					}
-				}
-			}
-			//must time matched Cards click
-			function timeMatchCards() {
-				setTimeout(matchCards, 500);
-			}
-			let matchedIndex = 0;
-			function matchCards() {
-				matchedCards[matchedIndex].click();
-				matchedIndex++;
-				if (matchedIndex < matchedCards.length) {
-					timeMatchCards();
-				}
-			}
-			timeMatchCards();
+		cy.getMatchedCards().then(matchedCards => {
+			cy.clickMatchedCards(matchedCards, 8);
 			//after game is won winner screen should be displayed and stats should be saved
 			cy.wait(10000);
 			cy.get('.winnerMsg').then(msg => {
