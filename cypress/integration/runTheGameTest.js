@@ -59,4 +59,28 @@ describe('Test Run The Game', function() {
 			});
 		});
 	});
+
+	it('On NOT match cards should animate', function() {
+		cy.visit('/');
+		cy.clock();
+		cy.getMatchedCards().then(matchedCards => {
+			matchedCards[0].click();
+			matchedCards[3].click();
+			cy.tick(500);
+			cy.getMatchedCards().then(newMatchedCards => {
+				expect(newMatchedCards[0].classList.value).to.equal('card show open animate');
+				expect(newMatchedCards[3].classList.value).to.equal('card show open animate');
+			});
+		});
+	});
+
+	it('On click single card should show open', function() {
+		cy.visit('/');
+		cy.get('#card1').then(card => {
+			card.click();
+			cy.get('#card1').then(clickedCard => {
+				expect(clickedCard[0].classList.value).to.equal('card show open');
+			});
+		});
+	});
 });

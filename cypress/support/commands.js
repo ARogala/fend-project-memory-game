@@ -24,6 +24,8 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+//matchedCards will be an array with matched cards in order 
+//matchedCards[0] will match matchedCards[1] ect.
 Cypress.Commands.add('getMatchedCards', () => {
 	let cardElements = [];
 	cy.get('.card').then(cardDOM => {
