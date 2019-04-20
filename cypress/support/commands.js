@@ -24,7 +24,7 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-//matchedCards will be an array with matched cards in order 
+//matchedCards will be an array with matched cards in order
 //matchedCards[0] will match matchedCards[1] ect.
 Cypress.Commands.add('getMatchedCards', () => {
 	let cardElements = [];
@@ -58,7 +58,7 @@ Cypress.Commands.add('clickMatchedCards', (matchedCards, numMatches) => {
 	function matchCards() {
 		matchedCards[matchedIndex].click();
 		matchedIndex++;
-		if (matchedIndex < numMatches*2) {
+		if (matchedIndex < numMatches * 2) {
 			timeMatchCards();
 		}
 	}

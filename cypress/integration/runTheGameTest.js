@@ -83,4 +83,16 @@ describe('Test Run The Game', function() {
 			});
 		});
 	});
+
+	it('should increment click count', function() {
+		cy.visit('/');
+		cy.getMatchedCards().then(matchedCards => {
+			cy.clickMatchedCards(matchedCards, 4);
+			cy.wait(5000).then(() => {
+				cy.get('.moves').then(moves => {
+					expect(parseInt(moves[0].innerText)).to.equal(4);
+				});
+			});
+		});
+	});
 });
