@@ -25,7 +25,12 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/pexels-photo-310452.jpeg'); /* Background pattern from Subtle Patterns */
+    /*background: #ffffff url('../img/pexels-photo-310452.jpeg');*/
+    background: #ffffff url('../img/space.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     font-family: 'Coda', cursive;
     font-size: 18px;
 }
@@ -215,6 +220,9 @@ h1 {
  * Styles for the Score Panel
  */
 .score-panel {
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 10px;
+    border-radius: 20px;
     text-align: left;
     min-width: 260px;
     margin-bottom: 10px;
