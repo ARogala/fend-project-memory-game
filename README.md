@@ -12,6 +12,7 @@
 Check out the game: https://andrewrogalamemorygame.surge.sh
 
 Webpack has been added for development and optimized production build
+
 Cypress.io has been added for testing
 
 npm install 
