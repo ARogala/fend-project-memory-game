@@ -1,5 +1,5 @@
 import { shuffleTheDeck } from './shuffleTheDeck';
-import { cardElements, nav, container, deck, buttonElements } from './DOMelements';
+import { cardElements, nav, deck, buttonElements, scorePanel } from './DOMelements';
 import { variables } from './variables';
 import { cards, unShuffledCards, randomDeck, randomCards, randomCardTemp } from './constants';
 //initialize the settings for the game
@@ -32,7 +32,7 @@ export function processSettingsInit() {
     }
     //only change color when second color theme has been picked
     if (JSON.parse(sessionStorage.getItem('ColorTheme')) === true) {
-        changeColor(nav, container, deck, buttonElements);
+        changeColor(nav, deck, buttonElements, scorePanel);
     }
 }
 
@@ -58,11 +58,11 @@ export function processSettings(e) {
     }
 }
 
-function changeColor(nav, container, deck, buttonElements) {
+function changeColor(nav, deck, buttonElements, scorePanel) {
     nav[0].style.cssText = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
     nav[0].lastElementChild.style.cssText = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
-    container[0].style.cssText = 'background: linear-gradient(160deg, rgba(255,131,0,.2) 0%, rgba(255,255,0,.2) 100%)';
     deck[0].style.cssText = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
+    scorePanel[0].style.cssText = 'background: linear-gradient(160deg, #ff8300 0%, #ffff00 100%)';
     //change all the buttons colors
     let count = 0;
     for (const buttonElement of buttonElements) {
