@@ -12,12 +12,15 @@
 Check out the game: https://andrewrogalamemorygame.surge.sh
 
 Webpack has been added for development and optimized production build
+Cypress.io has been added for testing
 
 npm install 
 
 npm run dev
 
 npm run build
+
+npm run test
 
 ## GamePlayRules
 There are eight different pairs of cards on the grid, thus making a total of sixteen cards.
@@ -34,8 +37,6 @@ but applies a penalty of two (2) moves.
 
 ## FuturePlans
 Increase the number of stars and adjust the rules of the game allowing the star rating to drop over time as well as when the number of moves increases.
-
-Add different icon sets and let the user choose between a few card themes.
 
 Improve game statistics storage. Add player names and a leader board. The current version only tracks the previous play and resets every time the game is reopened.
 
